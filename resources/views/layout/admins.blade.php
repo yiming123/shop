@@ -191,6 +191,14 @@
                             <li><a href="/admin/category">浏览分类</a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#"><i class="icon-bullhorn"></i>公告管理</a>
+                        <ul class='closed'>
+                            <li><a href="/admin/notice/create">添加公告</a></li>
+                            <li><a href="/admin/notice">浏览公告</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>         
         </div>

@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/admin/cate','admin\CateController');
+Route::resource('/admin/notice','admin\NoticeController');
