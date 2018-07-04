@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'RPC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -227,5 +227,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    'path'=>'/uploads/'
 
 ];
