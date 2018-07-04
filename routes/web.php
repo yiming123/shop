@@ -19,13 +19,15 @@ Route::get('/', function () {
 Route::group([],function(){
 	//后台首页
 	Route::any('admin/index','admin\IndexController@index');
-	//订单管理
-	Route::any('admin/orders/index','admin\OrdersController@index');
-	Route::any('admin/orders/update','admin\OrdersController@edit');
 	//友情链接管理
 	Route::any('admin/link/index','admin\LinkController@index');
 	Route::any('admin/link/add','admin\LinkController@create');
+	Route::any('admin/link/edit/{id}','admin\LinkController@edit');
+	Route::any('admin/link/update/{id}','admin\LinkController@update');
+	Route::any('admin/link/destroy/{id}','admin\LinkController@destroy');
 	Route::any('admin/link','admin\LinkController@store');
+	//订单管理
+	Route::resource('admin/orders','admin\OrdersController');
 });
 //前台路由组
 Route::group([],function(){

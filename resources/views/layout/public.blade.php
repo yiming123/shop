@@ -277,8 +277,8 @@
                     <li>
                         <a href="/admin/orders/index"><i class="icon-list" ></i> 订单管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/orders/index">浏览订单</a></li>
-                            <li><a href="/admin/orders/create">添加订单</a></li>
+                            <li><a href="/admin/orders">浏览订单</a></li>
+                            
                         </ul>
                     </li>
                      <li>

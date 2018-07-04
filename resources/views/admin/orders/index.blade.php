@@ -140,8 +140,16 @@
                             
                         </td>
                          <td class=" ">
-                            <a href="">修改</a>
-                            <a href="">删除</a>
+                            <a href="/admin/orders/{{$v->oid}}/edit" class='btn btn-info'>修改</a>
+                            <form action="/admin/orders/{{$v->oid}}" method="post"  style='display:inline'>
+                                
+                                {{csrf_field()}}
+
+                                {{method_field('DELETE')}}
+                                <button class='btn btn-warning'>删除</button>
+
+                            </form>
+                            
                         </td>
                     </tr>
                  

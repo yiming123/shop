@@ -81,8 +81,8 @@
                             {{$v->lurl}}
                         </td>
                          <td class=" ">
-                            <a href="">修改</a>
-                            <a href="">删除</a>
+                            <a href="/admin/link/edit/{{$id=$v->lid}}">修改</a>
+                            <a href="/admin/link/destroy/{{$id=$v->lid}}/">删除</a>
                         </td>
                     </tr>
                  
@@ -147,7 +147,7 @@
 
 
             <div class="dataTables_paginate paging_full_numbers" id="paginate">
-                {{dump($arr)}}
+                
                 {{ $res->appends($arr)->links() }}
             </div>
         </div>

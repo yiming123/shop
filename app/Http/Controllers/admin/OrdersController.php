@@ -18,7 +18,7 @@ class OrdersController extends Controller
     public function index()
     {
         //
-         $res = Orders::paginate(10);
+        $res = Orders::paginate(10);
         return view('admin.orders.index',[
             'title'=>'用户的列表页',  
             'res'=>$res
@@ -65,12 +65,16 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()//$id
+    public function edit($id)
     {
         //
-         return view('admin.orders.add',[
+        $res=Orders::find($id);
 
-            'title'=>'用户的修改页面'
+        // dd($res);
+         return view('admin.orders.edit',[
+
+            'title'=>'用户的修改页面',
+            'res'=>$res
         ]);
     }
 
@@ -83,8 +87,21 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            ]);
+        // dd($id);
+        $res = $request->except('_token','_method','profile','oid'); 
+        // dd($res);
+        try{
+             $data = Orders::where('oid',$id)->update($res);
+             dd($data);
+
+            if($data){
+                return redirect('/admin/orders/index')->with('success','修改成功');
+            }
+        }catch(\Exception $e){
+
+            return back()->with('error');
+
+        }
     }
 
     /**
@@ -96,5 +113,15 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+        // dd($id);
+         $res = Orders::where('oid',$id)->delete();
+        //第二种
+        // $res = User::destroy($id);
+
+        if($res){
+
+            return redirect('/admin/orders')->with('success','删除成功');
+        }
+
     }
 }

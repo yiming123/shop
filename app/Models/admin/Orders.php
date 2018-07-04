@@ -24,5 +24,5 @@ class Orders extends Model
      *
      * @var array
      */
-    protected $fillable = ['oid','uid','consigne','address','phone','sum_num','sum_price','time','message','state'];
+    protected $fillable = ['uid','consigne','address','phone','sum_num','sum_price','time','message','state'];
 }

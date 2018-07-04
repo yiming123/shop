@@ -23,7 +23,7 @@ class LinkController extends Controller
                 paginate($request->input('num',10));
         // dd($res['num']);
         $arr = ['num'=>$request->input('num'),'search'=>$request->input('search')];
-        dump($arr);
+        
         return view('admin.link.index',[
             'title'=>'友情链接的列表页',  
             'res'=>$res,
@@ -53,6 +53,16 @@ class LinkController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'lname' => 'required|regex:/^\w{1,20}$/',
+            'lurl' => 'required|regex:/^\S{1,50}$/',          
+        ],[
+            'lname.required'=>'链接名不能为空',
+            'lname.regex'=>'链接名格式不正确',
+            'lurl.required'=>'链接地址不能为空',
+            'lurl.regex'=>'链接地址格式不正确'
+
+        ]);
          $res = $request->except(['_token','profile','repass']);
          // dd($res);
           try{
@@ -90,6 +100,8 @@ class LinkController extends Controller
     public function edit($id)
     {
         //
+        $res = Link::where('lid',$id)->first();
+        return view('admin.link.edit',['title'=>'友情链接的修改页面','res'=>$res]);
     }
 
     /**
@@ -102,6 +114,29 @@ class LinkController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'lname' => 'required|regex:/^\w{1,20}$/',
+            'lurl' => 'required|regex:/^\S{1,50}$/',          
+        ],[
+            'lname.required'=>'链接名不能为空',
+            'lname.regex'=>'链接名格式不正确',
+            'lurl.required'=>'链接地址不能为空',
+            'lurl.regex'=>'链接地址格式不正确'
+
+        ]);
+        $res = $request->except('_token','_method','profile');    
+        try{
+             $data = Link::where('lid',$id)->update($res);
+
+            if($data){
+                return redirect('/admin/link/index')->with('success','修改成功');
+            }
+        }catch(\Exception $e){
+
+            return back()->with('error');
+
+        }
+
     }
 
     /**
@@ -113,5 +148,11 @@ class LinkController extends Controller
     public function destroy($id)
     {
         //
+        $res = Link::where('lid',$id)->delete();
+        if($res){
+            return redirect('/admin/link/index')->with('success','删除成功');
+        
+        }
+
     }
 }
