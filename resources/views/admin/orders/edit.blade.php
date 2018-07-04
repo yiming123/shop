@@ -82,18 +82,17 @@
     			</div>
     			</div>
     			<div class="mws-form-row">
-    				<div class="mws-form-item clearfix">
+    				<div class="mws-form-item clearfix" >
 
     					<ul class="mws-form-list inline">
                             <label class="mws-form-label">状态</label>
-                            
     						<li><input type="radio" name='state' value='1' checked='checked'> <label>发货</label></li>
     						<li><input type="radio" name='state' value='0'> <label>收货</label></li>
     					</ul>
     				</div>
     			</div>
     		</div>
-    		<div class="mws-button-row">
+    		<div class="mws-button-inline" >
 
                 {{csrf_field()}}
 
