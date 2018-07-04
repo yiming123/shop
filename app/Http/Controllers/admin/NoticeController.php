@@ -16,7 +16,9 @@ class NoticeController extends Controller
     public function index()
     {
         //
-        echo 'this is index';
+        $res = Notice::paginate(5);
+        // dd($res);
+        return view('admin.notice.index',['title'=>'公告浏览页面','res'=>$res]);
     }
 
     /**
@@ -75,7 +77,8 @@ class NoticeController extends Controller
     {
         //
         $res = Notice::find($id);
-        return view('admin.notice.edit',['title'=>'公告修改页面']);
+        // dd($res);
+        return view('admin.notice.edit',['title'=>'公告修改页面','res'=>$res]);
     }
 
     /**
@@ -88,6 +91,23 @@ class NoticeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        // echo '1231';
+        $data = $request->except('_method','_token');
+        // dd($res);
+        
+        try{
+            if($data){
+
+                $res = Notice::where('id',$id)->update($data);
+                
+                return redirect('/admin/notice')->with('success','修改成功');
+            
+            } 
+        } catch(\Exception $e){
+
+            return back()->with('error','修改失败');
+
+        }
     }
 
     /**
@@ -99,5 +119,15 @@ class NoticeController extends Controller
     public function destroy($id)
     {
         //
+        $data = Notice::where('id',$id)->first();
+        // dd($data);
+        try{
+            if($data){
+                $res = Notice::where('id',$id)->delete($data);
+                return redirect('/admin/notice')->with('success','删除成功');
+            }
+        } catch (\Exception $e){
+            return back()->with('error','删除失败');
+        }
     }
 }
