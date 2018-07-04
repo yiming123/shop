@@ -23,7 +23,11 @@
 .mws-panel .mws-panel-header {
     background-image: url(../images/core/mws-panel-header-bg.png);
     background-repeat: repeat-x;
+<<<<<<< HEAD
     height: 25px;
+=======
+    height: 55px;
+>>>>>>> origin/liuling
     position: relative;
     padding: 12px 12px 10px 12px;
     border-bottom: 2px solid #35353a;
