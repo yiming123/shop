@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Notice;
 
 class NoticeController extends Controller
 {
@@ -37,9 +38,20 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        echo '11111';
+        // echo '11111';
         //
-        // $res = $request->all();
+        $res = $request->except('_token');
+
+        $data = Notice::create($res);
+        try{
+            if($data){
+                return redirect('/admin/notice')->with('success','添加成功');
+            }
+        } catch(\Exception $e){
+            return back()->with('error','添加失败');
+        }
+
+        // dump($res);
     }
 
     /**
@@ -62,6 +74,8 @@ class NoticeController extends Controller
     public function edit($id)
     {
         //
+        $res = Notice::find($id);
+        return view('admin.notice.edit',['title'=>'公告修改页面']);
     }
 
     /**
