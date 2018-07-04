@@ -50,4 +50,4 @@ Route::group([],function() {
 
 Route::resource('/admin/cate','admin\CateController');
 Route::resource('/admin/notice','admin\NoticeController');
-
+Route::resource('/admin/goods','admin\GoodsController');

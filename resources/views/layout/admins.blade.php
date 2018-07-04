@@ -34,6 +34,10 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 
 <link rel="stylesheet" type="text/css" href="/admins/css/admins.css" media="screen">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <title>@yield('title')</title>
 
@@ -187,8 +191,8 @@
                     <li>
                         <a href="#"><i class="icon-list"></i>分类管理</a>
                         <ul class='closed'>
-                            <li><a href="/admin/category/create">添加分类</a></li>
-                            <li><a href="/admin/category">浏览分类</a></li>
+                            <li><a href="/admin/cate/create">添加分类</a></li>
+                            <li><a href="/admin/cate">浏览分类</a></li>
                         </ul>
                     </li>
 
@@ -197,6 +201,14 @@
                         <ul class='closed'>
                             <li><a href="/admin/notice/create">添加公告</a></li>
                             <li><a href="/admin/notice">浏览公告</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="icon-bag"></i>商品管理</a>
+                        <ul class='closed'>
+                            <li><a href="/admin/goods/create">添加商品</a></li>
+                            <li><a href="/admin/goods">浏览商品</a></li>
                         </ul>
                     </li>
                 </ul>
