@@ -4,15 +4,9 @@ namespace App\Models\admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ad extends Model
-{
-    //<?php
 
-namespace App\Models\admin;
 
-use Illuminate\Database\Eloquent\Model;
-
-class User extends Model
+class Ad extends Model
 {
     //
     /**
@@ -35,4 +29,4 @@ class User extends Model
     protected $fillable = ['adid','adname','url','content','adstime','adetime'];
 }
 
-}
+
