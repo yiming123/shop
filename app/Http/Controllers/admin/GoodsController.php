@@ -231,14 +231,15 @@ class GoodsController extends Controller
             }
         }
 
-        $goods = Goods::find($id);
+        // $goods = Goods::find($id);
 
          //模型   出错
         try{
             $data = DB::table('goodspic')->where('gid',$id)->update($goodspc);
+            dd($data);
 
             if($data){
-               return back()->with('error','修改失败'); 
+                return redirect('/admin/goods')->with('success','修改失败');
             }
         }catch(\Exception $e){
 
