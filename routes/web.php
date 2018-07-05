@@ -17,12 +17,7 @@ Route::get('/', function () {
 //后台路由组
 Route::group([],function() {
 
-	Route::any('admin/index','admin\IndexController@index');
-	Route::any('admin/ad/index','admin\IndexController@index');
-	Route::any('admin/ad/add','admin\ad\AdController@create');
-	Route::any('admin/ad/index','admin\ad\AdController@index');
-	Route::any('admin/ad','admin\ad\AdController@store');
-	Route::any('admin/ad/edit/{id}','admin\ad\AdController@edit');
-	Route::any('admin/ad/update/{id}','admin\ad\AdController@update');
-	Route::any('admin/ad/delete/{id}','admin\ad\AdController@destroy');
+
+	Route::resource('admin/comment','admin\CommentController');
+	Route::resource('admin/ad','admin\AdController');
 });

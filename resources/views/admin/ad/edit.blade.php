@@ -21,7 +21,7 @@
 			@endif
 
 
-    	<form action="/admin/ad/update/{{$res->adid}}" method='post' class="mws-form" enctype='multipart/form-data'>
+    	<form action="/admin/ad/{$res->adid}" method='post' class="mws-form" enctype='multipart/form-data'>
     		<div class="mws-form-inline">
     			
 
@@ -83,6 +83,7 @@
     		<div class="mws-button-row">
 
     			{{csrf_field()}}
+                 {{method_field('PUT')}}
     			<input type="submit" class="btn btn-success" value="修改">
     		</div>
     	</form>

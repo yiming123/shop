@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin\ad;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -63,8 +63,8 @@ class AdController extends Controller
          'required|regex:/\S/',
           'content' =>
          'required|regex:/\S/',
-         /*'url' =>
-         'required|regex:/\S/',*/
+         //'url' =>
+         //'required|regex:/\S/',
     ],
         [
             'adname.required'=>'广告商家名不能为空',
@@ -74,7 +74,7 @@ class AdController extends Controller
             
             'adetime.required'=>'结束时间不能为空',
             'content.required'=>'广告描述内容不能为空',
-            /*'url.required'=>'广告路径不能为空'*/
+            'url.required'=>'广告路径不能为空'
 
         ]);
         $res = $request->except(['_token']);
@@ -150,7 +150,7 @@ class AdController extends Controller
         dump($info);*/
        // if(!$info) return;
 
-        $res = $request->except('_token','url');
+        $res = $request->except('_token','url','_method');
         //dump($res);
         if($request->hasFile('url')){
             //设置名字
