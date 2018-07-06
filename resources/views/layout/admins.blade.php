@@ -124,18 +124,18 @@
 
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="/admins/example/profile.jpg" alt="User Photo">
+                	<img src="{{session('image')}}" alt="User Photo">
                 </div>
 
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        Hello
+                        Hello, {{session('name')}}
                     </div>
                     <ul>
                     	<li><a href="#">修改头像</a></li>
-                        <li><a href="#">修改密码</a></li>
-                        <li><a href="index.html">退出</a></li>
+                        <li><a href="/admin/pass">修改密码</a></li>
+                        <li><a href="/admin/logout">退出</a></li>
                     </ul>
                 </div>
             </div>
@@ -171,10 +171,21 @@
             <div id="mws-navigation">
                 <ul>
                     <li>
-                        <a href="#"><i class="icon-list"></i>用户管理</a>
+                        <a href="#"><i class="icon-users"></i>用户管理</a>
                         <ul class='closed'>
                             <li><a href="/admin/user/create">添加用户</a></li>
                             <li><a href="/admin/user">浏览用户</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+             <div id="mws-navigation">
+                <ul>
+                    <li>
+                        <a href="#"><i class="icon-add-contact"></i>角色管理</a>
+                        <ul class='closed'>
+                            <li><a href="/admin/role/create">添加角色 </a></li>
+                            <li><a href="/admin/role">浏览角色 </a></li>
                         </ul>
                     </li>
                 </ul>

@@ -17,17 +17,40 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //搜索
-        $res = User::where('uname','like','%'.$request->input('search').'%')->paginate($request->input('num',10));
-        //定义一个数组
-        $arr = ['num'=>$request->input('num'),'search'=>$request->input('search')];
-        return view('admin.user.index',['title'=>'用户列表页面',
+        // //单条件搜索
+        // $res = User::where('uname','like','%'.$request->input('search').'%')->paginate($request->input('num',10));
+        // //定义一个数组
+        // $arr = ['num'=>$request->input('num'),'search'=>$request->input('search')];
+        // return view('admin.user.index',['title'=>'用户列表页面',
+        //     'res'=>$res,
+        //     'arr'=>$arr
+        //     ]);
+        //多条件查询
+        $res = User::orderBy('uid','asc')
+        ->where(function($query) use($request){
+            //检测关键字
+            $uname = $request->input('search');
+            $sex = $request->input('sex');
+
+            //判断如果用户名不为空
+            if(!empty($uname)){
+
+                $query->where('uname','like','%'.$uname.'%');
+            }
+
+            //如果性别不为空
+            if(!empty($sex)){
+
+                $query->where('sex','like','%'.$sex.'%');
+            }
+
+        })
+        ->paginate($request->input('num',5));
+        return view('admin.user.index',[
+            'title'=>'用户列表页面',
             'res'=>$res,
-            'arr'=>$arr
+            'request'=>$request
             ]);
-
-
-
 
     }
 

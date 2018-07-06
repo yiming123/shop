@@ -47,7 +47,9 @@ class LoginController extends Controller
 			return back()->with('error','验证码不正确');
 		}
 
-		session(['name'=>$res['uname']]);
+		session(['name'=>$name->uname]);
+
+		session(['image'=>$name->image]);
 
 		return redirect('/admin/index');
 
@@ -82,6 +84,15 @@ class LoginController extends Controller
 		    header("Cache-Control: no-cache, must-revalidate");
 		    header("Content-Type:image/jpeg");
 		    $builder->output();
+		}
+
+		//退出
+		public function logout()
+		{
+			//将session里面存储的信息删除
+			session(['name'=>'']);
+			//退出后跳转到登陆页面
+			return redirect('admin/login');
 		}
 
 }

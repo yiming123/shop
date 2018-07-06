@@ -14,34 +14,17 @@
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
 
-			<form action="/admin/user" method='get'>
-	            <div id="DataTables_Table_1_length" class="dataTables_length">
-	                <label>
-	                    显示
-	                    <select name="num" size="1" aria-controls="DataTables_Table_1">
-	                        <option value="10" @if($request->num ==5) selected="selected" @endif>
-	                            5
-	                        </option>
-	                        <option value="25" @if($request->num ==15) selected="selected" @endif>
-	                            15
-	                        </option>
-	                        <option value="50" @if($request->num ==20) selected="selected" @endif>
-	                            20
-	                        </option>
+			<form action="/admin/role" method='get'>
 
-	                    </select>
-	                    条数据
-	                </label>
-	            </div>
 	            <div class="dataTables_filter" id="DataTables_Table_1_filter">
 	                <label>
 	                    同户名:
-	                    <input type="text" name='search' value="{{$request->search}}" aria-controls="DataTables_Table_1">
+	                    <input type="text" name='search' value="" aria-controls="DataTables_Table_1">
 	                </label>
 
                      <label>
                         性别:
-                        <input type="text" name='sex' value="{{$request->sex}}" aria-controls="DataTables_Table_1">
+                        <input type="text" name='sex' value="" aria-controls="DataTables_Table_1">
                     </label>
 
 	                <button class='btn btn-info'>搜索</button>
@@ -62,25 +45,9 @@
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
-                            用户名
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            权限
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            性别
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            手机号
+                            角色名称
                         </th>
 
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                           头像
-                        </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
@@ -89,47 +56,19 @@
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
 
-					@foreach($res as $k => $v)
+	       @foreach($res as $k => $v)
 
                     <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
                         <td class="">
-                            {{$v->uid}}
+                            {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->uname}}
+                            {{$v->rolename}}
                         </td>
-                        <td class=" ">
-                            @if($v->auth == 0)
-                            高级管理员
 
-                            @else
-                            @endif
-                            @if($v->auth == 1)
-                            普通管理员
-
-                            @else
-                            普通用户
-                            @endif
-                        </td>
-                        <td class=" ">
-                           @if($v->sex == 0)
-                           女
-                           @else
-                           男
-                           @endif
-
-                        </td>
-                        <td class=" ">
-                            {{$v->tell}}
-
-                        </td>
-                        <td class=" ">
-                            <img src="{{$v->image}}" alt="" width='100'>
-
-                        </td>
                          <td class=" ">
-                            <a href="/admin/user/{{$v->uid}}/edit" class='btn btn-info'>修改</a>
-                            <form action="/admin/user/{{$v->uid}}" method="post"  style='display:inline'>
+                            <a href="/admin/role/{{$v->id}}/edit" class='btn btn-info'>修改</a>
+                            <form action="/admin/role/{{$v->id}}" method="post"  style='display:inline'>
                           {{csrf_field()}}
 
                           {{method_field('DELETE')}}
