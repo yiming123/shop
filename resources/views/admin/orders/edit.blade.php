@@ -11,18 +11,8 @@
     </div>
     <div class="mws-panel-body no-padding">
 
-    		@if (count($errors) > 0)
-			    <div class="mws-form-message error">
-			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <li style='font-size:16px;list-style:none'>{{ $error }}</li>
-			            @endforeach
-			        </ul>
-			    </div>
-			@endif
 
-
-    	<form action="/admin/orders/{{$id=$res->oid}}" method='post' class="mws-form" enctype='multipart/form-data'>
+    	<form action="/admin/orders/{{$res->oid}}" method='post' class="mws-form" enctype='multipart/form-data'>
     		<div class="mws-form-inline">
     			<div class="mws-form-row">
     				<label class="mws-form-label">订单号</label>

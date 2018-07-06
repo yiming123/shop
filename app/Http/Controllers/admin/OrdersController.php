@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Config;
 use Hash;
 use App\Models\admin\Orders;
+// use App\Models\admin\User;
 
 class OrdersController extends Controller
 {
@@ -18,10 +19,15 @@ class OrdersController extends Controller
     public function index()
     {
         //
+
         $res = Orders::paginate(10);
+        // $uname = User::where('uid',$res[uid])->first(uname);
+        
+
         return view('admin.orders.index',[
             'title'=>'用户的列表页',  
-            'res'=>$res
+            'res'=>$res,
+            'uname'=>$uanme
             ]);
     }
 
@@ -114,6 +120,7 @@ class OrdersController extends Controller
     {
         //
         // dd($id);
+        //删除制定ID的订单表
          $res = Orders::where('oid',$id)->delete();
         //第二种
         // $res = User::destroy($id);

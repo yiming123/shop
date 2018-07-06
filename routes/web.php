@@ -29,6 +29,7 @@ Route::group([],function(){
 	Route::any('admin/link','admin\LinkController@store');
 	//订单管理
 	Route::resource('admin/orders','admin\OrdersController');
+	Route::resource('admin/dis','admin\DisController');
 });
 //前台路由组
 Route::group([],function(){

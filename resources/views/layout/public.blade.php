@@ -269,13 +269,8 @@
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
-<!--                     <li class="active"><a href="dashboard.html"><i class="icon-home"></i> Dashboard</a></li>
-<li><a href="charts.html"><i class="icon-graph"></i> Charts</a></li>
-<li><a href="calendar.html"><i class="icon-calendar"></i> Calendar</a></li>
-<li><a href="files.html"><i class="icon-folder-closed"></i> File Manager</a></li>
-<li><a href="table.html"><i class="icon-table"></i> Table</a></li> -->
                     <li>
-                        <a href="/admin/orders/index"><i class="icon-list" ></i> 订单管理</a>
+                        <a href="/admin/orders"><i class="icon-list" ></i> 订单管理</a>
                         <ul class="closed">
                             <li><a href="/admin/orders">浏览订单</a></li>
                             
@@ -288,17 +283,13 @@
                             <li><a href="/admin/link/add">添加友情链接</a></li>
                         </ul>
                     </li>
-                    <!-- <li><a href="widgets.html"><i class="icon-cogs"></i> Widgets</a></li>
-                    <li><a href="typography.html"><i class="icon-font"></i> Typography</a></li>
-                    <li><a href="grids.html"><i class="icon-th"></i> Grids &amp; Panels</a></li>
-                    <li><a href="gallery.html"><i class="icon-pictures"></i> Gallery</a></li>
-                    <li><a href="error.html"><i class="icon-warning-sign"></i> Error Page</a></li>
                     <li>
-                        <a href="icons.html">
-                            <i class="icon-pacman"></i> 
-                            Icons <span class="mws-nav-tooltip">2000+</span>
-                        </a>
-                    </li> -->
+                        <a href="/admin/dis"><i class="icon-list" ></i> 配送管理</a>
+                        <ul class="closed">
+                            <li><a href="/admin/dis">浏览配送方式</a></li>
+                            <li><a href="/admin/dis/add">添加配送方式</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>         
         </div>
@@ -307,8 +298,19 @@
         <div id="mws-container" class="clearfix">
         
             <!-- Inner Container Start -->
+            @if(session('success'))
+                <div class="mws-form-message success">
+                    {{session('success')}}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="mws-form-message danger">
+                    {{session('error')}}
+                </div>
+            @endif
             @section('content')
-           
+                
             @show
             <!-- Inner Container End -->
                        

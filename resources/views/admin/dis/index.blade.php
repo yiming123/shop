@@ -12,22 +12,19 @@
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
 
-            <form action="/admin/user" method='get'>
+            <form action="/admin/dis" method='get'>
                 <div id="DataTables_Table_1_length" class="dataTables_length">
                     <label>
                         显示
                         <select name="num" size="1" aria-controls="DataTables_Table_1">
-                            <option value="10" selected="selected">
+                            <option value="10" @if($arr['num'] == 10)   selected="selected" @endif>
                                 10
                             </option>
-                            <option value="25">
-                                25
+                            <option value="20" @if($arr['num'] == 20)  selected="selected"  @endif>
+                                20
                             </option>
-                            <option value="50">
-                                50
-                            </option>
-                            <option value="100">
-                                100
+                            <option value="30" @if($arr['num'] == 30)  selected="selected"  @endif>
+                                30
                             </option>
                         </select>
                         条数据
@@ -36,7 +33,7 @@
                 <div class="dataTables_filter" id="DataTables_Table_1_filter">
                     <label>
                         关键字:
-                        <input type="text" name='search' aria-controls="DataTables_Table_1">
+                        <input type="text" name='search' value="{{$arr['search']}}" aria-controls="DataTables_Table_1">
                     </label>
 
                     <button class='btn btn-info'>搜索</button>
@@ -53,43 +50,23 @@
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 198px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
-                            订单号
+                            编号
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
                             用户名
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
+                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                            订单号
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            收货人
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            收货地址
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            收货电话
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            总数量
+                            快递公司
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                           总金额
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            下单时间
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            留言
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            状态
+                           价格
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
@@ -103,45 +80,23 @@
 
                     <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
                         <td class="">
+                            {{$v->did}}
+                        </td>
+                        <td class=" ">
+                            {{$v->uid}}
+                        </td>
+                        <td class=" ">
                             {{$v->oid}}
                         </td>
                         <td class=" ">
-                            $uname
+                            {{$v->way}}
                         </td>
                         <td class=" ">
-                            {{$v->consigne}}
+                            {{$v->price}}
                         </td>
-                        <td class=" ">
-                            {{$v->address}}
-                            
-                        </td>
-                         <td class=" ">
-                            {{$v->phone}}
-                            
-                        </td>
-                        <td class=" ">
-                            {{$v->sum_num}}
-                            
-                        </td>
-                        <td class=" ">
-                            {{$v->sum_price}}
-                            
-                        </td>
-                        <td class=" ">
-                            {{$v->time}}
-                            
-                        </td>
-                        <td class=" ">
-                            {{$v->message}}
-                            
-                        </td>
-                        <td class=" ">
-                            {{$v->state}}
-                            
-                        </td>
-                         <td class=" ">
-                            <a href="/admin/orders/{{$v->oid}}/edit" class='btn btn-info'>修改</a>
-                            <form action="/admin/orders/{{$v->oid}}" method="post"  style='display:inline'>
+                          <td class=" ">
+                            <a href="/admin/dis/{{$v->did}}/edit" class='btn btn-info'>修改</a>
+                            <form action="/admin/dis/{{$v->did}}" method="post"  style='display:inline'>
                                 
                                 {{csrf_field()}}
 
@@ -213,8 +168,9 @@
             </style>
 
 
-            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-                {{$res->links()}}
+            <div class="dataTables_paginate paging_full_numbers" id="paginate">
+                
+                {{ $res->appends($arr)->links() }}
             </div>
         </div>
     </div>
