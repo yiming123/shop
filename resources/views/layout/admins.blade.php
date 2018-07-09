@@ -209,6 +209,7 @@
                         <ul class='closed'>
                             <li><a href="/admin/goods/create">添加商品</a></li>
                             <li><a href="/admin/goods">浏览商品</a></li>
+                            <li><a href="/admin/promotion/index">浏览促销商品</a></li>
                         </ul>
                     </li>
                 </ul>

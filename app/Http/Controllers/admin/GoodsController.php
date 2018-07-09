@@ -191,14 +191,9 @@ class GoodsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $res = $request->except('_token','gpic[]','_method');
+        $res = $request->except('_token','gpic','_method');
 
         $info = Goods::where('id',$id)->update($res);
-
-        if(!$info){
-
-            return back()->with('error','更新失败');
-        }
 
         //商品图片
         if($request->hasFile('gpic')){
@@ -220,33 +215,23 @@ class GoodsController extends Controller
                 //移动
                 $v->move('./uploads/',$name.'.'.$suffix);
 
-                $gc['gid'] = $gid;
+                $gc['gid'] = $id;
 
                 $gc['gpic'] = '/uploads/'.$name.'.'.$suffix;
-
-                // dump($gc);
 
                 $goodspc[] = $gc;
 
             }
         }
+         // $delete = Goods::find($id)->
+// dd($id);
+        $data = DB::table('goodspic')->insert($goodspc);
 
-        // $goods = Goods::find($id);
+       
 
-         //模型   出错
-        try{
-            $data = DB::table('goodspic')->where('gid',$id)->update($goodspc);
-            dd($data);
-
-            if($data){
-                return redirect('/admin/goods')->with('success','修改失败');
-            }
-        }catch(\Exception $e){
-
+        if($data){
             return redirect('/admin/goods')->with('success','修改成功');
-
         }
-
         
     }
 
@@ -259,6 +244,13 @@ class GoodsController extends Controller
     public function destroy($id)
     {
         //
+        $goods = Goods::find($id);
+
+        $goods->delete();
+
+        $res = $goods->many()->delete();
+
+        // dump($res);
     }
         
 }

@@ -131,8 +131,9 @@
                         </td>
 
                         <td class=" ">
-                            {{$v->status}}
-                            
+                            @if($v['status']==0)上架 @endif
+                            @if($v['status']==1)下架 @endif
+                           
                         </td>
 
                          <td class=" " style="padding: 0px;margin: 0px">
@@ -147,6 +148,7 @@
                                 <button href="" class='btn btn-warning'>删除</button>
 
                             </form>
+                            <a href="/admin/promotion/create/{{$v->id}}" class='btn btn-success'>促销</a>
                             </center>
                         </td>
                     </tr>

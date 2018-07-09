@@ -31,4 +31,10 @@ class Goods extends Model
         // 第一个参数附表模型   第二个参数是附表的外键
         return $this->hasMany('App\Models\Admin\Goodspic','gid');
     }
+
+   /* public function only()
+    {
+        return $this->hasOne('App\Models\Admin\Promotion','gid');
+    }*/
+    
 }

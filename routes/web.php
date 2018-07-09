@@ -17,3 +17,14 @@ Route::get('/', function () {
 Route::resource('/admin/cate','admin\CateController');
 Route::resource('/admin/notice','admin\NoticeController');
 Route::resource('/admin/goods','admin\GoodsController');
+
+Route::get('/admin/promotion/create/{id}','admin\PromotionsController@create');
+Route::post('admin/promotion/store','admin\PromotionsController@store');
+Route::any('/admin/promotion/index','admin\PromotionsController@index');
+Route::any('/admin/promotion/edit/{id}','admin\PromotionsController@edit');
+Route::any('/admin/promotion/update/{id}','admin\PromotionsController@update');
+Route::any('/admin/promotion/delete/{id}','admin\PromotionsController@delete');
+
+
+
+Route::any('/test','admin\PromotionsController@test');
