@@ -26,17 +26,18 @@ Route::get('/', function () {
 //修改密码
 	Route::any('admin/pass','admin\PassController@pass');
 	Route::any('admin/change','admin\PassController@change');
-
+	Route::any('admin/test','admin\UserroleController@test');
 
 //后台路由组
 Route::group([],function(){
-
 	//后台首页
 	Route::any('admin/index','admin\IndexController@index');
 
-
 	//后台用户管理
 	Route::resource('admin/user','admin\UserController');
+
+
+
 	//角色管理
 	Route::resource('admin/role','admin\RoleController');
 

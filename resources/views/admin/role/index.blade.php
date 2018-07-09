@@ -14,24 +14,7 @@
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
 
-			<form action="/admin/role" method='get'>
-
-	            <div class="dataTables_filter" id="DataTables_Table_1_filter">
-	                <label>
-	                    同户名:
-	                    <input type="text" name='search' value="" aria-controls="DataTables_Table_1">
-	                </label>
-
-                     <label>
-                        性别:
-                        <input type="text" name='sex' value="" aria-controls="DataTables_Table_1">
-                    </label>
-
-	                <button class='btn btn-info'>搜索</button>
-	            </div>
-            </form>
-
-
+		
 
 
 

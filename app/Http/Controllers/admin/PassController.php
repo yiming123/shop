@@ -9,39 +9,61 @@ use Session;
 use Hash;
 class PassController extends Controller
 {
-    //
-    public function pass()
-    {
+	//
+	public function pass(Request $request)
+	{
 
-    	return view('admin.pass.pass',['title'=>'修改密码']);
-    }
+		// $uname = $request->session()->get('name');
+		// $user_info = User::where('uname',$uname)->first();
+		return view('admin.pass.pass',['title'=>'修改密码']);
+	}
 
-    public function change(Request $request)
-    {
-    	//密码验证
-    	/* $this->validate($request, [
-                        'pwd' => 'required|regex:/^\S{6,12}$/',
-                        'newpwd'=>'required|regex:/^\S{6,12}$/',
-                        'newrepwd'=>'required|regex:/^\S{6,12}$/',
-                        ],[
-                        'pwd.required'=>'用户密码不能为空',
-                        'pwd.regex'=>'用户密码格式不正确',
-                        'tell.required'=>'手机号不能为空',
-                        'tell.regex'=>'手机号格式不正确'
-                    ]);*/
-    	//获取数据
-    	// $res = $request->except('_token');
-    	// dd($res);
+	public function change(Request $request)
+	{
 
-    	//在数据库中查询用户名是否存在,进行判断
-		
+		//密码验证
+		 $this->validate($request, [
+						'pwd' => 'required|regex:/^\S{6,12}$/',
+						'newpwd'=>'required|regex:/^\S{6,12}$/',
+						'newrepwd'=>'same:pwd',
+						],[
+						'pwd.required'=>'用户密码不能为空',
+						'pwd.regex'=>'用户密码格式不正确',
+						'newpwd.required'=>'新密码不能为空',
+						'newpwd.regex'=>'新密码格式不正确',
+						'newrepwd.same'=>'两次密码不一致'
+					]);
+		//获取数据
+		$res = $request->except('_token');
+		// dd($res);
 
-		//判断密码,将获取到的密码和数据库的密码进行对比
-		// if(!Hash::check($res['pwd'],$pass->pwd)){
+		$uname = $request->session()->get('name');
+		// //查询数据库信息
+		// 第一种方法
+		$user_info = User::where('uname',$uname)->first();
+		//地二中方法
+		/*$user_info = User::where(['pwd'=>$pwd,'name'=>$name])->first();
+		//第三种方法
+		$where = array(
+					'pwd' => $pwd ,
+					'name' => $name ,
+					'sex' => $sex ,
+				);
+		$user_info = User::where($where)->first();
 
-		// 	//r如果密码对比失败,back回去
-		// 	return back()->with('error','密码不正确');
-		// }
+		*/
 
-    }
+		//数据库里的密码
+		// $user_pwd = $user_info['pwd'];
+
+		if (!Hash::check($res['pwd'],$user_info->pwd) ){
+		//$pwd(用户输入的密码 加密后 与 数据库中的 密码作对比
+			//如果密码对比失败,back回去
+			return back()->with('error','旧密码不正确');
+
+		}
+
+
+
+	}
 }

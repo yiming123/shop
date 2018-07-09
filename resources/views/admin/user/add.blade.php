@@ -44,6 +44,12 @@
     				</div>
     			</div>
 
+                <div class="mws-form-row">
+                    <label class="mws-form-label">邮箱</label>
+                    <div class="mws-form-item">
+                        <input type="email" class="small" name='email'>
+                    </div>
+                </div>
                           <div class="mws-form-row">
                                 <label class="mws-form-label">性别</label>
                                     <div class="mws-form-item clearfix">
@@ -68,16 +74,7 @@
     					<input type="file" name='image' class="fileinput-preview" style="width: 100%; padding-right: 84px;" readonly="readonly" placeholder="No file selected...">
     				</div>
     			</div>
-    			<div class="mws-form-row">
-    				<label class="mws-form-label">权限</label>
-    				<div class="mws-form-item clearfix">
-    					<ul class="mws-form-list inline">
-    						<li><input type="radio" name='auth' value='0' checked='checked'> <label>高级管理员</label></li>
-                           <li><input type="radio" name='auth' value='1'> <label>普通管理员</label></li>
-    						<li><input type="radio" name='auth' value='2'> <label>普通用户</label></li>
-    					</ul>
-    				</div>
-    			</div>
+    			
     		</div>
     		<div class="mws-button-row">
 

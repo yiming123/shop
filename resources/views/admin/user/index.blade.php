@@ -57,19 +57,17 @@
                 <thead>
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 198px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                        rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
                             ID
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 150px;" aria-label="Browser: activate to sort column ascending">
                             用户名
                         </th>
+
+
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            权限
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 70px;" aria-label="Platform(s): activate to sort column ascending">
                             性别
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
@@ -77,12 +75,17 @@
                             手机号
                         </th>
 
+                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
+                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
+                            邮箱
+                        </th>
+
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
                            头像
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 260px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
                         </th>
                     </tr>
@@ -98,19 +101,7 @@
                         <td class=" ">
                             {{$v->uname}}
                         </td>
-                        <td class=" ">
-                            @if($v->auth == 0)
-                            高级管理员
 
-                            @else
-                            @endif
-                            @if($v->auth == 1)
-                            普通管理员
-
-                            @else
-                            普通用户
-                            @endif
-                        </td>
                         <td class=" ">
                            @if($v->sex == 0)
                            女
@@ -123,12 +114,18 @@
                             {{$v->tell}}
 
                         </td>
+
+                        <td class=" ">
+                            {{$v->email}}
+
+                        </td>
                         <td class=" ">
                             <img src="{{$v->image}}" alt="" width='100'>
 
                         </td>
                          <td class=" ">
                             <a href="/admin/user/{{$v->uid}}/edit" class='btn btn-info'>修改</a>
+
                             <form action="/admin/user/{{$v->uid}}" method="post"  style='display:inline'>
                           {{csrf_field()}}
 
@@ -136,6 +133,7 @@
                               <button href="" class="btn btn-warning">删除</button>
 
                             </form>
+                            <a href="/admin/test" class='btn btn-info'>角色修改</a>
                         </td>
                     </tr>
 
