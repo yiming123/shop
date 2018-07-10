@@ -21,21 +21,17 @@
             @endif
 
 
-        <form action="/admin/user" method='post' class="mws-form" enctype='multipart/form-data'>
+        <form action="/admin/dotest" method='post' class="mws-form" enctype='multipart/form-data'>
             <div class="mws-form-inline">
-                <div class="mws-form-row">
-                    <label class="mws-form-label">用户名</label>
-                    <div class="mws-form-item">
-                        <input type="text" class="small" name='uname'>
-                    </div>
-                </div>
+                
 
                           <div class="mws-form-row">
                                 <label class="mws-form-label">角色名称</label>
                                     <div class="mws-form-item clearfix">
                                          <ul class="mws-form-list inline">
-                                             <li><input type="radio" name='sex' value='0' checked='checked'> <label>普通管理员</label></li>
-                                              <li><input type="radio" name='sex' value='1'> <label>商品管理员</label></li>
+                                         @foreach($data as $k => $v)
+                                             <li><input type="radio" name='rolename' value='0' checked='checked'> <label>{{$v->rolename}}</label></li>
+                                          @endforeach    
                                        </ul>
                                     </div>
                             </div>

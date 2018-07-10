@@ -14,41 +14,7 @@
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
 
-			<form action="/admin/user" method='get'>
-	            <div id="DataTables_Table_1_length" class="dataTables_length">
-	                <label>
-	                    显示
-	                    <select name="num" size="1" aria-controls="DataTables_Table_1">
-	                        <option value="10" @if($request->num ==5) selected="selected" @endif>
-	                            5
-	                        </option>
-	                        <option value="25" @if($request->num ==15) selected="selected" @endif>
-	                            15
-	                        </option>
-	                        <option value="50" @if($request->num ==20) selected="selected" @endif>
-	                            20
-	                        </option>
-
-	                    </select>
-	                    条数据
-	                </label>
-	            </div>
-	            <div class="dataTables_filter" id="DataTables_Table_1_filter">
-	                <label>
-	                    同户名:
-	                    <input type="text" name='search' value="{{$request->search}}" aria-controls="DataTables_Table_1">
-	                </label>
-
-                     <label>
-                        性别:
-                        <input type="text" name='sex' value="{{$request->sex}}" aria-controls="DataTables_Table_1">
-                    </label>
-
-	                <button class='btn btn-info'>搜索</button>
-	            </div>
-            </form>
-
-
+		
 
 
 
@@ -57,83 +23,57 @@
                 <thead>
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 120px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                        rowspan="1" colspan="1" style="width: 198px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
                             ID
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 150px;" aria-label="Browser: activate to sort column ascending">
-                            用户名
-                        </th>
-
-
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 70px;" aria-label="Platform(s): activate to sort column ascending">
-                            性别
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            手机号
+                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                            权限名称
                         </th>
 
                          <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            邮箱
+                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                            链接地址
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
+                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                            描述
                         </th>
 
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                           头像
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 260px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
                         </th>
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
 
-					@foreach($res as $k => $v)
+	       @foreach($res as $k => $v)
 
                     <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
                         <td class="">
-                            {{$v->uid}}
+                            {{$v->id}}
                         </td>
                         <td class=" ">
-                            {{$v->uname}}
+                            {{$v->authname}}
                         </td>
 
-                        <td class=" ">
-                           @if($v->sex == 0)
-                           女
-                           @else
-                           男
-                           @endif
-
-                        </td>
-                        <td class=" ">
-                            {{$v->tell}}
-
-                        </td>
-
-                        <td class=" ">
-                            {{$v->email}}
-
-                        </td>
-                        <td class=" ">
-                            <img src="{{$v->image}}" alt="" width='100'>
-
-                        </td>
                          <td class=" ">
-                            <a href="/admin/user/{{$v->uid}}/edit" class='btn btn-info'>修改</a>
+                            {{$v->link}}
+                        </td>
+                        <td class=" ">
+                            {{$v->description}}
+                        </td>
 
-                            <form action="/admin/user/{{$v->uid}}" method="post"  style='display:inline'>
+                         <td class=" ">
+                            <a href="/admin/auth/{{$v->id}}/edit" class='btn btn-info'>修改</a>
+                            <form action="/admin/auth/{{$v->id}}" method="post"  style='display:inline'>
                           {{csrf_field()}}
 
                           {{method_field('DELETE')}}
                               <button href="" class="btn btn-warning">删除</button>
 
                             </form>
-                            <a href="/admin/test/{{$v->uid}}" class='btn btn-info'>角色修改</a>
                         </td>
                     </tr>
 

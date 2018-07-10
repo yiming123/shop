@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Auth;
 
+
 class AuthController extends Controller
 {
     /**
@@ -13,9 +14,16 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        // echo 122;
+        $res = Auth::paginate(10);
+        // dump($res);
+        return view('admin.auth.index',[
+            'title'=>'角色列表页面',
+            'res'=>$res
+            ]);
     }
 
     /**
@@ -26,6 +34,7 @@ class AuthController extends Controller
     public function create()
     {
         //
+         return view('admin.auth.add',['title'=>'权限添加页面']);
     }
 
     /**
@@ -36,7 +45,20 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+          $res = $request->except('_token');
+        // dd($res);
+        //模型
+            try{
+
+            $data = Auth::create($res);
+            if($data){
+
+                return redirect('/admin/auth')->with('success','添加成功');
+                }
+            }catch(\Exception $e){
+                return back();
+            }
     }
 
     /**
@@ -48,6 +70,7 @@ class AuthController extends Controller
     public function show($id)
     {
         //
+         
     }
 
     /**
@@ -59,6 +82,11 @@ class AuthController extends Controller
     public function edit($id)
     {
         //
+        $res = Auth::find($id);
+        return view('admin.auth.edit',[
+            'title'=>'角色修改页面',
+            'res'=>$res
+            ]);
     }
 
     /**
@@ -71,6 +99,21 @@ class AuthController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //接收查询的数据
+            $res = $request->except('_token','_method');
+
+            // dd($res);
+             //模型
+            try{
+
+                 $data = Auth::where('id',$id)->update($res);
+                if($data){
+
+                     return redirect('/admin/auth')->with('success','修改成功');
+                     }
+                 }catch(\Exception $e){
+                     return back()->with('error');
+             }      
     }
 
     /**
@@ -82,5 +125,13 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
+        //通过id查询到信息删除
+        $res = Auth::where('id',$id)->delete();
+
+        if($res){
+
+            return redirect('/admin/auth')->with('success','删除成功');
+        }
+        
     }
 }

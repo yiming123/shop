@@ -25,7 +25,7 @@ class PassController extends Controller
 		 $this->validate($request, [
 						'pwd' => 'required|regex:/^\S{6,12}$/',
 						'newpwd'=>'required|regex:/^\S{6,12}$/',
-						'newrepwd'=>'same:pwd',
+						'newrepwd'=>'same:newpwd',
 						],[
 						'pwd.required'=>'用户密码不能为空',
 						'pwd.regex'=>'用户密码格式不正确',
@@ -54,7 +54,8 @@ class PassController extends Controller
 		*/
 
 		//数据库里的密码
-		// $user_pwd = $user_info['pwd'];
+		$user_pwd = $user_info['pwd'];
+		// dd($user_pwd);
 
 		if (!Hash::check($res['pwd'],$user_info->pwd) ){
 		//$pwd(用户输入的密码 加密后 与 数据库中的 密码作对比
@@ -63,7 +64,17 @@ class PassController extends Controller
 
 		}
 
+		//模型
+					try{
 
+					$data = User::where('uid',$id)->update($user_info);
+					if($data){
+
+						return redirect('/admin/login')->with('success','修改成功');
+						}
+					}catch(\Exception $e){
+						return back()->with('error');
+					}
 
 	}
 }

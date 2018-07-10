@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Config;
 use Hash;
 use App\Models\Admin\User;
+use App\Models\Admin\Role;
+
 
 class UserController extends Controller
 {
@@ -229,5 +231,33 @@ class UserController extends Controller
 					}
 	}
 
+	public function test($id)
+	{
+		// echo 1;
+		// //显示修改页面
+		 $data = Role::all();
+         dump($data);
 
+		$res = User::find($id);
+		// // dump($res);
+		return view('admin.user.role',[
+			'title'=>'角色修改页面',
+			'data'=>$data,
+			'res'=>$res
+
+			]);
+
+	}
+	
+
+	public function dotest(Request $request,$id)
+	{
+
+		//接收查询的数据
+           $res = Role::all();
+           dump($res);
+           
+	}
+
+	
 }

@@ -24,5 +24,5 @@ class Auth extends Model
      *
      * @var array
      */
-    protected $fillable = ['authname','link'];
+    protected $fillable = ['authname','link','description'];
 }

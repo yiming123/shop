@@ -190,6 +190,17 @@
                     </li>
                 </ul>
             </div>
+            <div id="mws-navigation">
+                <ul>
+                    <li>
+                        <a href="#"><i class="icon-github-2"></i>权限管理</a>
+                        <ul class='closed'>
+                            <li><a href="/admin/auth/create">添加权限 </a></li>
+                            <li><a href="/admin/auth">浏览权限 </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- Main Container Start -->
