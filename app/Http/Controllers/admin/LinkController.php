@@ -39,7 +39,7 @@ class LinkController extends Controller
     {
         //
         return view('admin.link.add',[
-            'title'=>'友情链接的列表页'
+            'title'=>'友情链接的添加页'
             ]);
     }
 
@@ -53,8 +53,8 @@ class LinkController extends Controller
     {
         //
         $this->validate($request, [
-            'lname' => 'required|regex:/^\w{1,20}$/',
-            'lurl' => 'required|regex:/^\S{1,50}$/',          
+            'lname' => 'required',
+            'lurl' => 'required',          
         ],[
             'lname.required'=>'链接名不能为空',
             'lname.regex'=>'链接名格式不正确',

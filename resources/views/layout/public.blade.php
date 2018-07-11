@@ -32,8 +32,58 @@
 <!-- Theme Stylesheet -->
 <link rel="stylesheet" type="text/css" href="/admin/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/admin/css/themer.css" media="screen">
-
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>@yield('title')</title>
+           <style>
+                .pagination li{
+                    float: left;
+                    height: 20px;
+                    padding: 0 10px;
+                    display: block;
+                    font-size: 12px;
+                    line-height: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    outline: none;
+                    background-color: #444444;
+
+
+                  
+                    text-decoration: none;
+                    border-right: 1px solid #232323;
+                    border-left: 1px solid #666666;
+                    border-right: 1px solid rgba(0, 0, 0, 0.5);
+                    border-left: 1px solid rgba(255, 255, 255, 0.15);
+                    -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+                    -moz-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+                    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+                }
+
+                .pagination li a{
+                      color: #fff;
+                }
+
+
+                .pagination .active{
+                    background-color: #88a9eb;
+                    color: #323232;
+                    border: none;
+                    background-image: none;
+                    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+                }
+
+                .pagination .disabled{
+                        color: #666666;
+                        cursor: default;
+                }
+
+               
+                 ul, ol {
+                    margin: 0 ;
+                    padding: 0;
+                }
+            </style>
 
 </head>
 
@@ -41,34 +91,6 @@
 
     <!-- Themer (Remove if not needed) -->  
     <div id="mws-themer">
-        <!-- <div id="mws-themer-content">
-            <div id="mws-themer-ribbon"></div>
-            <div id="mws-themer-toggle">
-                <i class="icon-bended-arrow-left"></i> 
-                <i class="icon-bended-arrow-right"></i>
-            </div>
-            <div id="mws-theme-presets-container" class="mws-themer-section">
-                <label for="mws-theme-presets">Color Presets</label>
-            </div>
-            <div class="mws-themer-separator"></div>
-            <div id="mws-theme-pattern-container" class="mws-themer-section">
-                <label for="mws-theme-patterns">Background</label>
-            </div>
-            <div class="mws-themer-separator"></div>
-            <div class="mws-themer-section">
-                <ul>
-                    <li class="clearfix"><span>Base Color</span> <div id="mws-base-cp" class="mws-cp-trigger"></div></li>
-                    <li class="clearfix"><span>Highlight Color</span> <div id="mws-highlight-cp" class="mws-cp-trigger"></div></li>
-                    <li class="clearfix"><span>Text Color</span> <div id="mws-text-cp" class="mws-cp-trigger"></div></li>
-                    <li class="clearfix"><span>Text Glow Color</span> <div id="mws-textglow-cp" class="mws-cp-trigger"></div></li>
-                    <li class="clearfix"><span>Text Glow Opacity</span> <div id="mws-textglow-op"></div></li>
-                </ul>
-            </div>
-            <div class="mws-themer-separator"></div>
-            <div class="mws-themer-section">
-                <button class="btn btn-danger small" id="mws-themer-getcss">Get CSS</button>
-            </div>
-        </div> -->
         <div id="mws-themer-css-dialog">
             <form class="mws-form">
                 <div class="mws-form-row">
@@ -287,7 +309,7 @@
                         <a href="/admin/dis"><i class="icon-list" ></i> 配送管理</a>
                         <ul class="closed">
                             <li><a href="/admin/dis">浏览配送方式</a></li>
-                            <li><a href="/admin/dis/add">添加配送方式</a></li>
+                            <li><a href="/admin/dis/create">添加配送方式</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -315,7 +337,7 @@
             <!-- Inner Container End -->
                        
             <!-- Footer -->
-            >
+            
             
         </div>
         <!-- Main Container End -->

@@ -80,7 +80,7 @@
 
                     <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
                         <td class="">
-                            {{$v->did}}
+                            {{$k+1}}
                         </td>
                         <td class=" ">
                             {{$v->uid}}

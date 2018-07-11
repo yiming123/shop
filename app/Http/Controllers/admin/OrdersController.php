@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Config;
 use Hash;
+use DB;
 use App\Models\admin\Orders;
-// use App\Models\admin\User;
+use App\Models\admin\User;
 
 class OrdersController extends Controller
 {
@@ -16,18 +17,35 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
 
-        $res = Orders::paginate(10);
-        // $uname = User::where('uid',$res[uid])->first(uname);
-        
+        // $res = Orders::paginate(10);
+        $res = DB::table('orders')
+            ->leftJoin('user', 'user.uid', '=', 'orders.uid')
+            ->where(function($query) use($request){
+                //检测关键字
+                $oid = $request->input('oid');
+                $gname = $request->input('uname');
+                //如果用户名不为空
+                if(!empty($oid)) {
+                    $query->where('oid','like','%'.$oid.'%');
+                }
+                //如果邮箱不为空
+                if(!empty($gname)) {
+                    $query->where('gname','like','%'.$gname.'%');
+                }
+            })
+
+            ->paginate($request->input('num', 1));
+
+        // dd($res);        
 
         return view('admin.orders.index',[
-            'title'=>'用户的列表页',  
+            'title'=>'订单列表页',  
             'res'=>$res,
-            'uname'=>$uanme
+            'request'=> $request
             ]);
     }
 
@@ -79,7 +97,7 @@ class OrdersController extends Controller
         // dd($res);
          return view('admin.orders.edit',[
 
-            'title'=>'用户的修改页面',
+            'title'=>'订单修改页面',
             'res'=>$res
         ]);
     }
@@ -98,10 +116,10 @@ class OrdersController extends Controller
         // dd($res);
         try{
              $data = Orders::where('oid',$id)->update($res);
-             dd($data);
+             // dd($data);
 
             if($data){
-                return redirect('/admin/orders/index')->with('success','修改成功');
+                return redirect('/admin/orders')->with('success','修改成功');
             }
         }catch(\Exception $e){
 
@@ -118,17 +136,62 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
-        // dd($id);
-        //删除制定ID的订单表
          $res = Orders::where('oid',$id)->delete();
-        //第二种
-        // $res = User::destroy($id);
+         $data = DB::table('orderdetails')->where('oid',$id)->delete();
 
-        if($res){
+        if($res && $data){
 
             return redirect('/admin/orders')->with('success','删除成功');
         }
 
+    }
+    public function del(Request $request,$id)
+    {
+        $res = DB::table('orderdetails')->where('odid',$id)->delete();
+        $oid = $request->oid;
+        if($res){
+
+            return redirect('/admin/orders/details/{$oid}')->with('success','删除成功');
+        }
+    }
+    public function details($id)
+    {
+        $res = DB::table('orderdetails')->where('oid',$id)
+        ->Join('goods', 'goods.id', '=', 'orderdetails.gid')
+        ->paginate(5);
+        try{
+            foreach ($res as $k => $v) {
+                $arr[] = DB::table('goodspic')->where('gid',$v->gid)->get();         
+            }
+            // dd($arr);
+            foreach ($arr as $k1 => $v1) {
+                foreach ($v1 as $k2 => $v2) {
+                    $a[] =$v2;
+                }
+            }            
+        }catch(\Exception $e){
+
+            $a = 0;
+        }
+        return view('admin.orders.details',['title'=>'订单详情','res'=>$res,'a'=>$a]);
+    }
+    public function ajaxorders(Request $request)
+    {
+        $res['num'] = $request->input('nnum');
+
+        $ids = $request->input('odid');
+
+        try{
+            $data = User::where('odid',$ids)->update($res);
+            
+            if($data){
+
+                echo 1;
+            }
+
+        }catch(\Exception $e){
+
+                echo 0;
+        }
     }
 }

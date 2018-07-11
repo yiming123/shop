@@ -76,8 +76,9 @@
 
     					<ul class="mws-form-list inline">
                             <label class="mws-form-label">状态</label>
-    						<li><input type="radio" name='state' value='1' checked='checked'> <label>发货</label></li>
-    						<li><input type="radio" name='state' value='0'> <label>收货</label></li>
+    						<li><input type="radio" name='state' value='0' @if($res->state == 0) checked @endif> <label>未处理</label></li>
+                            <li><input type="radio" name='state' value='1' @if($res->state == 1) checked @endif> <label>处理中</label></li>
+    						<li><input type="radio" name='state' value='2' @if($res->state == 2) checked @endif> <label>已处理</label></li>
     					</ul>
     				</div>
     			</div>

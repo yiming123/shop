@@ -29,11 +29,20 @@ Route::group([],function(){
 	Route::any('admin/link','admin\LinkController@store');
 	//订单管理
 	Route::resource('admin/orders','admin\OrdersController');
+	Route::any('admin/orders/details/{id}','admin\OrdersController@details');
+	Route::any('admin/orders/del/{id}','admin\OrdersController@del');
+	Route::any('admin/ajaxorders','admin\UserController@ajaxorders');
+	//配送方式
 	Route::resource('admin/dis','admin\DisController');
+	Route::resource('/admin/cate','admin\CateController');
+	Route::resource('/admin/notice','admin\NoticeController');
+	Route::resource('/admin/goods','admin\GoodsController');
 });
 //前台路由组
 Route::group([],function(){
-	
+	//购物车
+	Route::any('/home/cart','home\CartController@cart');
+	Route::any('/home/ajaxcart','home\CartController@ajaxcart');
 });
 
 Route::group([],function() {
@@ -49,6 +58,4 @@ Route::group([],function() {
 });
 
 
-Route::resource('/admin/cate','admin\CateController');
-Route::resource('/admin/notice','admin\NoticeController');
-Route::resource('/admin/goods','admin\GoodsController');
+

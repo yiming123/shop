@@ -72,7 +72,7 @@
 
                     <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
                         <td class="">
-                            {{$v->lid}}
+                            {{$k+1}}
                         </td>
                         <td class=" ">
                             {{$v->lname}}
@@ -81,8 +81,8 @@
                             {{$v->lurl}}
                         </td>
                          <td class=" ">
-                            <a href="/admin/link/edit/{{$id=$v->lid}}">修改</a>
-                            <a href="/admin/link/destroy/{{$id=$v->lid}}/">删除</a>
+                            <a href="/admin/link/edit/{{$id=$v->lid}}" class='btn btn-info'>修改</a>
+                            <a href="/admin/link/destroy/{{$id=$v->lid}}/" class='btn btn-danger'>删除</a>
                         </td>
                     </tr>
                  
