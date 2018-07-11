@@ -36,11 +36,7 @@
                         <select name='cid' class="small">
                             <option value='0'>请选择</option>
                             @foreach($cate as $k=>$v)
-
-                            
                             <option value='{{$v->id}}' @if($v->id == $goodsone->cid) selected @endif>{{$v->cname}}</option>
-
-
                             @endforeach
                         </select>
                     </div>
@@ -79,9 +75,8 @@
                     <label class="mws-form-label">商品图片</label>
                     <div class="mws-form-item">
                         @foreach($goodspic as $k => $v)
-                        <img src="{{$v->gpic}}" alt="" width='200'>
+                        <img src="{{$v->gpic}}" alt="" class='img' width='200' gid="{{$goodsone->id}}">
                         @endforeach
-
                         <input type="file" name='gpic[]' multiple class="fileinput-preview" style="width: 100%; padding-right: 84px;" readonly="readonly" placeholder="No file selected...">
                     </div>
                 </div>
@@ -94,12 +89,10 @@
 
                 </script>
 
-
-
                 <div class="mws-form-row">
                     <label class="mws-form-label">商品详情</label>
                     <div class="mws-form-item">
-                       <script id="editor" name='gdesc' type="text/plain" style="width:1000px;height:300px;">{!!$goodsone->content!!}</script>
+                       <script id="editor" name='gdesc' type="text/plain" style="width:800px;height:300px;">{!!$goodsone->content!!}</script>
                     </div>
                 </div>
 
@@ -107,16 +100,14 @@
                     <label class="mws-form-label">状态</label>
                     <div class="mws-form-item clearfix">
                         <ul class="mws-form-list inline">
-                            <li><input type="radio" name='status' value='1' @if($goodsone->status=='1') checked='checked' @endif > <label>上架</label></li>
-                            <li><input type="radio" name='status' value='0' @if($goodsone->status=='0') checked='checked' @endif> <label>下架</label></li>
+                            <li><input type="radio" name='status' value='1' @if($goodsone->status=='0') checked='checked' @endif > <label>上架</label></li>
+                            <li><input type="radio" name='status' value='0' @if($goodsone->status=='1') checked='checked' @endif> <label>下架</label></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="mws-button-row">
-
                 {{csrf_field()}}
-
                 {{method_field('PUT')}}
                 <input type="submit" class="btn btn-success" value="修改">
             </div>
@@ -126,4 +117,6 @@
 
 
 @endsection
+
+
 

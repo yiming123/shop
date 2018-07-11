@@ -22,22 +22,41 @@ class GoodsController extends Controller
     {
         //
         $gname = Goods::orderBy('id','asc')->where(function($query) use($request){
+            
             // 检测关键字
             $gname = $request->input('gname');
+            
             $price = $request->input('price');
 
             // 如果用户名不为空
             if(!empty($gname)){
+            
                 $query->where('gname','like','%'.$gname.'%');
+            
             }
 
             // 如果邮箱不能为空
             if(!empty($price)){
+            
                 $query->where('price','like','%'.$price.'%');
+            
             }
-        })->paginate($request->input('num',10));
 
-        return view('admin.goods.index',['title'=>'商品浏览列表','res'=>$gname,'request'=>$request]);
+        })->paginate($request->input('num',5));
+
+        $ids = Goods::all();
+    
+        foreach ($ids as $k => $v) {
+           
+            $id = $v->id;
+            
+        }
+
+        $gpic = Goodspic::all();
+
+        $cates = Cate::all();
+
+        return view('admin.goods.index',['title'=>'商品浏览列表','res'=>$gname,'request'=>$request,'gpic'=>$gpic,'cates'=>$cates]);
 
     }
 
@@ -49,15 +68,10 @@ class GoodsController extends Controller
     public function create()
     {
         //
-         $res = Cate::select(DB::raw('*,concat(path,id) as paths'))->
-            orderBy('paths')->
-            get();
-            
+        $res = Cate::select(DB::raw('*,concat(path,id) as paths'))->orderBy('paths')->get();
+         
         foreach($res as $k => $v){
             //获取path
-            // $paths = explode(',',$v->path);
-            //$evl = count($paths)-2;
-
             $rs = substr_count($v->path,',')-1;
 
             $v->cname = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$rs).'|--'.$v->cname;
@@ -191,14 +205,9 @@ class GoodsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $res = $request->except('_token','gpic[]','_method');
+        $res = $request->except('_token','gpic','_method');
 
         $info = Goods::where('id',$id)->update($res);
-
-        if(!$info){
-
-            return back()->with('error','更新失败');
-        }
 
         //商品图片
         if($request->hasFile('gpic')){
@@ -220,32 +229,23 @@ class GoodsController extends Controller
                 //移动
                 $v->move('./uploads/',$name.'.'.$suffix);
 
-                $gc['gid'] = $gid;
+                $gc['gid'] = $id;
 
                 $gc['gpic'] = '/uploads/'.$name.'.'.$suffix;
-
-                // dump($gc);
 
                 $goodspc[] = $gc;
 
             }
         }
+         // $delete = Goods::find($id)->
+// dd($id);
+        $data = DB::table('goodspic')->insert($goodspc);
 
-        $goods = Goods::find($id);
+       
 
-         //模型   出错
-        try{
-            $data = DB::table('goodspic')->where('gid',$id)->update($goodspc);
-
-            if($data){
-               return back()->with('error','修改失败'); 
-            }
-        }catch(\Exception $e){
-
+        if($data){
             return redirect('/admin/goods')->with('success','修改成功');
-
         }
-
         
     }
 
@@ -258,6 +258,13 @@ class GoodsController extends Controller
     public function destroy($id)
     {
         //
+        $goods = Goods::find($id);
+
+        $goods->delete();
+
+        $res = $goods->many()->delete();
+
+        // dump($res);
     }
         
 }

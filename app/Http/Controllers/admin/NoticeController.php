@@ -43,6 +43,7 @@ class NoticeController extends Controller
         // echo '11111';
         //
         $res = $request->except('_token');
+        // dd($res);
 
         $data = Notice::create($res);
         try{

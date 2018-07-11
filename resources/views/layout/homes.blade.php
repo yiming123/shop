@@ -50,7 +50,53 @@
 
 					<!-- Logo
 					============================================= -->
+<<<<<<< HEAD
 			
+=======
+					<div id="logo">
+						<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="/homes/images/logo.png" alt="Canvas Logo"></a>
+						<a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="/homes/images/logo@2x.png" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+
+						@php
+
+							$res = App\Http\Controllers\admin\CateController::getsubcate(0);
+						@endphp
+
+							@foreach($res as $k => $v)
+							<li><a href="index.html"><div>{{$v->cname}}</div></a>
+								@if($v->sub)
+								<ul>
+									@foreach($v->sub as $kk => $vv)
+
+									
+									<li><a href="index-corporate.html"><div>{{$vv->cname}}</div></a>
+										@if($vv->sub)
+										<ul>
+											@foreach($vv->sub as $ks => $vs)
+											<li><a href="index-corporate.html"><div>{{$vs->cname}}</div></a></li>
+											@endforeach
+
+										</ul>
+										@endif
+									</li>
+									
+									@endforeach
+									
+								</ul>
+								@endif
+								
+							</li>
+							@endforeach
+							
+						</ul>
+>>>>>>> origin/liuling
 
 						<!-- Top Cart
 						============================================= -->
@@ -281,11 +327,14 @@
 	============================================= -->
 	<script type="text/javascript" src="/homes/js/functions.js"></script>
 
+<<<<<<< HEAD
 
 	@section('js')
 
 
 	@show
 
+=======
+>>>>>>> origin/liuling
 </body>
 </html>

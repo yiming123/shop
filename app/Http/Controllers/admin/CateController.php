@@ -130,7 +130,9 @@ class CateController extends Controller
     {
         //
         $info = Cate::find($id);
+
         $res = Cate::select(DB::raw('*,concat(path,id) as paths'))->orderBy('paths')->get();
+
         foreach ($res as $k => $v) {
             
             //数一下几个 , 
@@ -158,8 +160,11 @@ class CateController extends Controller
             $data = Cate::where('id',$id)->update($res);
 
             if($data){
+
                 return redirect('/admin/cate')->with('success','修改成功');
+            
             }
+
         }catch(\Exception $e){
 
             return back()->with('error','修改失败');
@@ -181,7 +186,9 @@ class CateController extends Controller
         //判断有没有子类
         //如果有子类不能删除
         if($cate){
+
             return redirect('/admin/cate')->with('error','删除失败');
+       
         }
 
         try {
@@ -196,6 +203,30 @@ class CateController extends Controller
 
                 return redirect('/admin/cate')->with('error','删除失败');
         }
+    }
+
+
+    public static function getsubcate($pid)
+    {
+ 
+        $cate = Cate::where('pid',$pid)->get();
+
+        $arr = [];
+
+        foreach ($cate as $k => $v) {
+            
+            if($v->pid==$pid){
+
+                $v->sub = self::getsubcate($v->id);
+
+                $arr[] = $v;
+
+            }
+
+        }
+
+        return $arr;
+ 
     }
 
 }

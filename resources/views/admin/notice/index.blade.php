@@ -18,7 +18,7 @@
                 <tr>
                     <th>ID</th>
                     <th>标题</th>
-                    <th>内容(s)</th>
+                    <th>内容(s)</th style="width: 100px">
                     <th>状态</th>
                     <th>操作</th>
 
@@ -29,14 +29,14 @@
                 <tr>
                     <td>{{$v['id']}}</td>
                     <td>{{$v['title']}}</td>
-                    <td>{{$v['content']}}</td>
+                    <td>{!!$v['content']!!}</td>
                     @if($v['status']==0)
 	                    <td>
-	                    	<a href="">禁用</a>
+	                    	禁用
 	                    </td>
                     @else 
 	                    <td>
-	                  	    <a href="">启用</a>
+	                  	    启用
 	                  	</td>
                   	@endif
                     <td style="width: 150px">

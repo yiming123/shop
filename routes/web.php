@@ -37,15 +37,15 @@ Route::group([],function(){
 	Route::resource('/admin/cate','admin\CateController');
 	Route::resource('/admin/notice','admin\NoticeController');
 	Route::resource('/admin/goods','admin\GoodsController');
-});
-//前台路由组
-Route::group([],function(){
-	//购物车
-	Route::any('/home/cart','home\CartController@cart');
-	Route::any('/home/ajaxcart','home\CartController@ajaxcart');
-});
 
-Route::group([],function() {
+	Route::get('/admin/promotion/create/{id}','admin\PromotionsController@create');
+	Route::post('admin/promotion/store/{id}','admin\PromotionsController@store');
+	Route::any('/admin/promotion/index','admin\PromotionsController@index');
+	Route::any('/admin/promotion/edit/{id}','admin\PromotionsController@edit');
+	Route::any('/admin/promotion/update/{id}','admin\PromotionsController@update');
+	Route::any('/admin/promotion/delete/{id}','admin\PromotionsController@delete');
+
+
 
 	Route::any('admin/index','admin\IndexController@index');
 	Route::any('admin/ad/index','admin\IndexController@index');
@@ -56,6 +56,28 @@ Route::group([],function() {
 	Route::any('admin/ad/update/{id}','admin\ad\AdController@update');
 	Route::any('admin/ad/delete/{id}','admin\ad\AdController@destroy');
 });
+//前台路由组
+Route::group([],function(){
+	//购物车
+	Route::any('/home/cart','home\CartController@cart');
+	Route::any('/home/ajaxcart','home\CartController@ajaxcart');
 
 
+	Route::any('/home','home\HomeController@index');
+	Route::any('/home/detail/{id}','home\HomeController@detail');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 前台路由
 

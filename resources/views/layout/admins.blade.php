@@ -34,10 +34,10 @@
 <link rel="stylesheet" type="text/css" href="/admins/css/themer.css" media="screen">
 
 <link rel="stylesheet" type="text/css" href="/admins/css/admins.css" media="screen">
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"> -->
+<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <title>@yield('title')</title>
 
@@ -209,6 +209,7 @@
                         <ul class='closed'>
                             <li><a href="/admin/goods/create">添加商品</a></li>
                             <li><a href="/admin/goods">浏览商品</a></li>
+                            <li><a href="/admin/promotion/index">浏览促销商品</a></li>
                         </ul>
                     </li>
                 </ul>
