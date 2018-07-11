@@ -20,4 +20,11 @@ Route::group([],function() {
 
 	Route::resource('admin/comment','admin\CommentController');
 	Route::resource('admin/ad','admin\AdController');
+	Route::resource('admin/lunbo','admin\LunboController');
+	Route::any('admin/vip','admin\VipController@index');
+});
+//前天路由组
+Route::group([],function(){
+
+	Route::any('home','home\Homecontroller@index');
 });

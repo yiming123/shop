@@ -14,7 +14,7 @@
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
 
-			<form action="/admin/ad/index" method='get'>
+			<form action="/admin/ad" method='get'>
 	            <div id="DataTables_Table_1_length" class="dataTables_length">
 	                <label>
 	                    显示
@@ -62,11 +62,11 @@
                 <thead>
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 198px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                        rowspan="1" colspan="1" style="width: 100px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
                             广告id
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 200px;" aria-label="Browser: activate to sort column ascending">
                             广告商家
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
@@ -86,7 +86,7 @@
                           结束时间
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 188px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
                         </th>
                     </tr>
@@ -120,8 +120,10 @@
                             
                         </td>
                          <td class=" ">
-                            <a href="/admin/ad/{{$v->adid}}/edit">修改</a>
-                             <form action="/admin/ad/{{$v->id}}" method='post' style='display:inline'>
+                           
+                            <a href="/admin/ad/{{$v->adid}}/edit" class='btn.btn-info'>修改</a>
+                           
+                             <form action="/admin/ad/{{$v->adid}}" method='post' style='display:inline'>
                                 
                                 {{csrf_field()}}
 

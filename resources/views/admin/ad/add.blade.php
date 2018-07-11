@@ -52,8 +52,8 @@
                 <div class="mws-form-row">
                     <label class="mws-form-label">广告描述内容</label>
                         <div class="mws-form-item">
-                                        <textarea rows="" cols="" class="large" name='content'></textarea>
-                                    </div>
+                            <textarea rows="" cols="" class="large" name='content'></textarea>;
+                        </div>
                 </div>
 
                 <div class="mws-form-row">
@@ -67,16 +67,7 @@
 
     			
     			
-    			<div class="mws-form-row">
-    				<label class="mws-form-label">状态</label>
-    				<div class="mws-form-item clearfix">
-    					<ul class="mws-form-list inline">
-    						<li><input type="radio" name='status' value='1' checked='checked'> <label>发布</label></li>
-    						<li><input type="radio" name='status' value='0'> <label>禁止</label></li>
-    					</ul>
-    				</div>
-    			</div>
-    		</div>
+    			
     		<div class="mws-button-row">
 
     			{{csrf_field()}}

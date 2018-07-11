@@ -26,5 +26,5 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $fillable = ['cid','uid','gid','star','content','addtime'];
+    protected $fillable = ['uid','oid','star','content','zcontent','addtime'];
 }

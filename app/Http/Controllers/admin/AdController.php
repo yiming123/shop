@@ -56,25 +56,26 @@ class AdController extends Controller
         $this->validate($request, [
         'adname' => 
         'required|regex:/\S/',
-     
-        
-        
-         'adetime' =>
-         'required|regex:/\S/',
-          'content' =>
-         'required|regex:/\S/',
-         //'url' =>
-         //'required|regex:/\S/',
+        'adstime' =>
+        'required|regex:/\S/',
+        'adetime' =>
+        'required|regex:/\S/',
+        'content' =>
+        'required|regex:/\S/',
+        //'url' =>
+       // 'required|regex:/\S/',
+         
     ],
         [
-            'adname.required'=>'广告商家名不能为空',
-            'adname.regex'=>'用户名格式不正确',
+            'adname.required'=>'广告商家不能为空',
+            //'content.regex'=>'评论格式不正确',
           
            'adstime.required'=>'添加时间不能为空',
-            
+           
             'adetime.required'=>'结束时间不能为空',
-            'content.required'=>'广告描述内容不能为空',
-            'url.required'=>'广告路径不能为空'
+            'content.required'=>'广告描述不能为空',
+
+           // 'url.required'=>'广告路径不能为空'
 
         ]);
         $res = $request->except(['_token']);
@@ -83,7 +84,7 @@ class AdController extends Controller
         if ($request->hasFile('url')){
 
             //设置名字
-            $name = str_random(8).time();
+            $name = str_random(10).time();
             //获取后缀
             $suffix= $request->file('url')->getClientOriginalExtension();
             //移动
@@ -93,16 +94,16 @@ class AdController extends Controller
         //存数据表
         $res['url']= Config::get('app.path').$name.'.'.$suffix;
        // dd($res);
-   //try{
+   try{
         $data = Ad::create($res);
         //dd($data);
         if($data){
-            return redirect('/admin/ad/index')->with('success','添加成功');
+            return redirect('/admin/ad')->with('success','添加成功');
           }
-       /* }catch(\Exception $e){
+       }catch(\Exception $e){
             return back()->with('error','添加失败');
         }
-*/
+
     }
 
     /**
@@ -143,8 +144,9 @@ class AdController extends Controller
     public function update(Request $request, $id)
     {
         //表单验证
-        $foo = Ad::find($id);
-        $urls  = $foo-> url;
+        $foo = Ad::first();
+        //dd($foo);
+        $urls  = $foo->url;
         //dump($urls);
       /*  $info = '@'.unlink('.'.$urls);
         dump($info);*/
@@ -160,20 +162,21 @@ class AdController extends Controller
             //移动
             $request ->file('url')->move('./uploads/',
              $name.'.'.$suffix);
+             //存数据表
+        $res['url']= Config::get('app.path').$name.'.'.$suffix;
 
         }
-        //存数据表
-        $res['url']= Config::get('app.path').$name.'.'.$suffix;
+       
         //dd($res);
         //模型 出错
-   // try{
+   try{
         $data  =  Ad::where('adid',$id)->update($res);
         if($data){
-            return redirect('/admin/ad/index')->with('success','修改成功');
+            return redirect('/admin/ad')->with('success','修改成功');
          }
-        //}catch(\Exception $e){
-          //  return back()->width('error');
-        //}
+        }catch(\Exception $e){
+           return back()->width('error');
+        }
     }
 
     /**
@@ -184,10 +187,12 @@ class AdController extends Controller
      */
     public function destroy($id)
     {
-        //echo 1111;
+        
+     //dd($id);
         $res = Ad::where('adid',$id)->delete();
+       // dump($res);
         if($res){
-            return redirect('/admin/ad/index')->with('success','删除成功');
+            return redirect('/admin/ad')->with('success','删除成功');
         }
     }
 }
