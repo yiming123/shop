@@ -179,8 +179,28 @@
                     <li>
                         <a href="#"><i class="icon-list"></i>广告管理</a>
                         <ul class='closed'>
-                            <li><a href="/admin/ad/add">添加广告</a></li>
-                            <li><a href="/admin/ad/index">浏览广告</a></li>
+                            <li><a href="/admin/ad/create">添加广告</a></li>
+                            <li><a href="/admin/ad">浏览广告</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-comments-2"></i>评论管理</a>
+                        <ul class='closed'>
+                            <li><a href="/admin/comment/create">添加评论</a></li>
+                            <li><a href="/admin/comment">浏览评论</a></li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#"><i class="icon-pictures"></i>轮播管理</a>
+                        <ul class='closed'>
+                            <li><a href="/admin/lunbo/create">添加轮播图片</a></li>
+                            <li><a href="/admin/lunbo">浏览轮播图片</a></li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#"><i class="icon-vimeo"></i>会员管理</a>
+                        <ul class='closed'>
+                            <li><a href="/admin/vip">浏览会员</a></li>
                         </ul>
                     </li>
                 </ul>

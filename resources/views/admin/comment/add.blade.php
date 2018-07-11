@@ -21,53 +21,47 @@
 			@endif
 
 
-    	<form action="/admin/ad" method='post' class="mws-form" enctype='multipart/form-data'>
+    	<form action="/admin/comment" method='post' class="mws-form" enctype='multipart/form-data'>
     		<div class="mws-form-inline">
     			
-
+                <div class="mws-form-row">
+                    <label class="mws-form-label">用户id</label>
+                    <div class="mws-form-item">
+                        <input type="text" class="small" name='uid' >
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                    <label class="mws-form-label">订单id</label>
+                    <div class="mws-form-item">
+                        <input type="text" class="small" name='oid'>
+                    </div>
+                </div>
     			<div class="mws-form-row">
-    				<label class="mws-form-label">广告商家</label>
+    				<label class="mws-form-label">评论等级</label>
     				<div class="mws-form-item">
-    					<input type="text" class="small" name='adname'>
+    					<input type="text" class="small" name='star'>
     				</div>
     			</div>
 
-    		
-
-    			
-
-    			
                 <div class="mws-form-row">
-                    <label class="mws-form-label">添加时间</label>
+                    <label class="mws-form-label">评论时间</label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" name='adstime'>
+                        <input type="text" class="small" name='addtime'>
                     </div>
                 </div>
+               
                 <div class="mws-form-row">
-                    <label class="mws-form-label">结束时间</label>
-                    <div class="mws-form-item">
-                        <input type="text" class="small" name='adetime'>
-                    </div>
-                </div>
-                <div class="mws-form-row">
-                    <label class="mws-form-label">广告描述内容</label>
+                    <label class="mws-form-label">评论内容</label>
                         <div class="mws-form-item">
-                            <textarea rows="" cols="" class="large" name='content'></textarea>;
+                                        <textarea rows="" cols="" class="large" name='content'></textarea>
                         </div>
                 </div>
-
                 <div class="mws-form-row">
-                    <label class="mws-form-label">广告路径</label>
-                    <div class="mws-form-item">
-                        <!-- <input type="file" class="small" name='profile'> -->
-
-                        <input type="file" name='url' class="fileinput-preview" style="width: 100%; padding-right: 84px;" readonly="readonly" placeholder="No file selected...">
-                    </div>
+                    <label class="mws-form-label">追加内容</label>
+                        <div class="mws-form-item">
+                                        <textarea rows="" cols="" class="large" name='zcontent'></textarea>
+                                    </div>
                 </div>
-
-    			
-    			
-    			
     		<div class="mws-button-row">
 
     			{{csrf_field()}}

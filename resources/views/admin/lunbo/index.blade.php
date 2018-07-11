@@ -14,7 +14,7 @@
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
 
-			<form action="/admin/ad" method='get'>
+			<form action="/admin/lunbo" method='get'>
 	            <div id="DataTables_Table_1_length" class="dataTables_length">
 	                <label>
 	                    显示
@@ -43,7 +43,7 @@
 	            </div>
 	            <div class="dataTables_filter" id="DataTables_Table_1_filter">
 	                <label>
-	                    广告商家:
+	                    图片名称:
 	                    <input type="text" name='search' 
                         value="{{$request->search}}" 
                         aria-controls="DataTables_Table_1">
@@ -63,27 +63,24 @@
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 100px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
-                            广告id
+                            轮播图片id
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 200px;" aria-label="Browser: activate to sort column ascending">
-                            广告商家
+                            图片url
                         </th>
+                       
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            图片链接地址
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            广告内容
+                        rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
+                           图片名称
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                           添加时间
+                          图片
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                          结束时间
+                          状态
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 188px;" aria-label="CSS grade: activate to sort column ascending">
@@ -97,33 +94,39 @@
 
                     <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
                         <td class="">
-                            {{$v->adid}}
+                            {{$v->lid}}
                         </td>
                         <td class="">
-                            {{$v->adname}}
+                            {{$v->url}}
+                        </td>
+                         <td class="">
+                            {{$v->lname}}
                         </td>
                         <td class=" ">
-                            <img src="{{$v->url}}" alt="" width='100'>
+                            <img src="{{$v->url}}" alt="" width="100">
+                            
+                        </td>
+                        
+                         <td class=" ">
+
+                            @if($v->status == '1')
+                                启用
+                            @else
+                            
+                            
+
+                            {{($v->status == '0')}}
+                              禁用
+                            @endif 
                             
                         </td>
                       
-                        <td class=" ">
-                            {{$v->content}}
-                        </td>
-                        <td class=" ">
-                            {{$v->adstime}}
-                            
-                        </td>
-                       
-                         <td class=" ">
-                            {{$v->adetime}}
-                            
-                        </td>
+                        
                          <td class=" ">
                            
-                            <a href="/admin/ad/{{$v->adid}}/edit" class='btn.btn-info'>修改</a>
+                            <a href="/admin/lunbo/{{$v->lid}}/edit" class='btn btn-info'>修改</a>
                            
-                             <form action="/admin/ad/{{$v->adid}}" method='post' style='display:inline'>
+                             <form action="/admin/lunbo/{{$v->lid}}" method='post' style='display:inline'>
                                 
                                 {{csrf_field()}}
 
@@ -204,6 +207,7 @@
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
 
 				{{$res->links()}}
+
 
             </div>
         </div>

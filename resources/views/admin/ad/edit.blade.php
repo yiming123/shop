@@ -21,7 +21,7 @@
 			@endif
 
 
-    	<form action="/admin/ad/update/{{$res->adid}}" method='post' class="mws-form" enctype='multipart/form-data'>
+    	<form action="/admin/ad/{{$res->adid}}" method='post' class="mws-form" enctype='multipart/form-data'>
     		<div class="mws-form-inline">
     			
 
@@ -47,8 +47,7 @@
                 <div class="mws-form-row">
                     <label class="mws-form-label">广告描述内容</label>
                         <div class="mws-form-item">
-                           <textarea rows="" cols="" class="large" name='content' value="{{$res->content}}">
-                           </textarea>
+                           <textarea rows="" cols="" class="large" name='content'>{{$res->content}}</textarea>
                         </div>
                 </div>
                
@@ -64,25 +63,11 @@
 
     			
     			
-    			<div class="mws-form-row">
-    				<label class="mws-form-label">状态</label>
-    				<div class="mws-form-item clearfix">
-    					<ul class="mws-form-list inline">
-    						<li><input type="radio"  value='1' checked='checked'@if ($res->status =='1') checked ='checked')
-
-                            @endif
-                            > <label>发布</label></li>
-    						<li><input type="radio"  value='0'
-                            @if ($res->status =='1') checked ='checked')
-
-                            @endif> <label>禁止</label></li>
-    					</ul>
-    				</div>
-    			</div>
-    		</div>
+    			
     		<div class="mws-button-row">
 
     			{{csrf_field()}}
+                 {{method_field('PUT')}}
     			<input type="submit" class="btn btn-success" value="修改">
     		</div>
     	</form>
@@ -101,7 +86,8 @@
 
 	},3000)*/
 
-	$('.mws-form-message').fadeOut(5000);
+	//$('.mws-form-message').fadeOut(5000);
+    
 
 </script>
 @endsection

@@ -14,43 +14,43 @@
     <div class="mws-panel-body no-padding">
         <div role="grid" class="dataTables_wrapper" id="DataTables_Table_1_wrapper">
 
-			<form action="/admin/ad" method='get'>
-	            <div id="DataTables_Table_1_length" class="dataTables_length">
-	                <label>
-	                    显示
-	                    <select name="num" size="1" aria-controls="DataTables_Table_1">
-	                        <option value="10"
+            <form action="/admin/comment" method='get'>
+                <div id="DataTables_Table_1_length" class="dataTables_length">
+                    <label>
+                        显示
+                        <select name="num" size="1" aria-controls="DataTables_Table_1">
+                            <option value="10"
                              @if($request->num == 10) selected="selected" 
                              @endif>
-	                            10
-	                        </option>
-	                        <option value="20"
+                                10
+                            </option>
+                            <option value="20"
                             @if($request->num == 20) selected="selected" 
                             @endif>
-	                            20
-	                        </option>
-	                        <option value="50"
+                                20
+                            </option>
+                            <option value="50"
                             @if($request->num == 50) selected="selected"
                             @endif>
-	                            40
+                                40
                           
                          
-	                        </option>
-	                    
-	                    </select>
-	                    条数据
-	                </label>
-	            </div>
-	            <div class="dataTables_filter" id="DataTables_Table_1_filter">
-	                <label>
-	                    广告商家:
-	                    <input type="text" name='search' 
+                            </option>
+                        
+                        </select>
+                        条数据
+                    </label>
+                </div>
+                <div class="dataTables_filter" id="DataTables_Table_1_filter">
+                    <label>
+                        订单号:
+                        <input type="text" name='search' 
                         value="{{$request->search}}" 
                         aria-controls="DataTables_Table_1">
-	                </label>
+                    </label>
 
-	                <button class='btn btn-info' >搜索</button>
-	            </div>
+                    <button class='btn btn-info' >搜索</button>
+                </div>
             </form>
 
 
@@ -63,67 +63,75 @@
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 100px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
-                            广告id
+                            评论id
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 200px;" aria-label="Browser: activate to sort column ascending">
-                            广告商家
+                        rowspan="1" colspan="1" style="width: 100px;" aria-label="Browser: activate to sort column ascending">
+                            用户id
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            图片链接地址
+                        rowspan="1" colspan="1" style="width: 100px;" aria-label="Platform(s): activate to sort column ascending">
+                            订单id
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            广告内容
+                        rowspan="1" colspan="1" style="width: 180px;" aria-label="Engine version: activate to sort column ascending">
+                            评论内容
+                        </th>
+                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
+                        rowspan="1" colspan="1" style="width: 180px;" aria-label="CSS grade: activate to sort column ascending">
+                          追加评论
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                           添加时间
+                          评价等级
                         </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
+                           <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                          结束时间
+                          评价时间
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 188px;" aria-label="CSS grade: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 300px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
                         </th>
                     </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
 
-					@foreach($res as $k => $v)
+                    @foreach($res as $k => $v)
 
                     <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
-                        <td class="">
-                            {{$v->adid}}
+                        <td class="" readonly="readonly">
+                            {{$v->cid}}
                         </td>
                         <td class="">
-                            {{$v->adname}}
+                            {{$v->uid}}
                         </td>
                         <td class=" ">
-                            <img src="{{$v->url}}" alt="" width='100'>
+                            {{$v->oid}}
                             
                         </td>
                       
                         <td class=" ">
-                            {{$v->content}}
+                            {{$v->star}}
                         </td>
                         <td class=" ">
-                            {{$v->adstime}}
+                            {{$v->content}}
                             
                         </td>
                        
                          <td class=" ">
-                            {{$v->adetime}}
+                            {{$v->zcontent}}
+                            
+                        </td>
+                         <td class=" ">
+                            {{$v->addtime}}
                             
                         </td>
                          <td class=" ">
                            
-                            <a href="/admin/ad/{{$v->adid}}/edit" class='btn.btn-info'>修改</a>
+                            <a href="/admin/comment/{{$v->cid}}/edit" class="btn btn-info">修改</a>
                            
-                             <form action="/admin/ad/{{$v->adid}}" method='post' style='display:inline'>
+                             <form action="/admin/comment/{{$v->cid}}" method='post' style='display:inline'>
                                 
                                 {{csrf_field()}}
 
@@ -144,9 +152,9 @@
                 Showing 1 to 10 of 57 entries
             </div>
 
-			<style>
-				
-			</style>
+            <style>
+                
+            </style>
 
                 <style>
                 .pagination li{
@@ -203,7 +211,7 @@
             </style>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
 
-				{{$res->links()}}
+                {{$res->links()}}
 
             </div>
         </div>

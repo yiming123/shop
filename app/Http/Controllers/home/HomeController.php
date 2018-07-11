@@ -34,5 +34,6 @@ class HomeController extends Controller
     	$data = Goodspic::where('gid',$id)->get();
 
     	return view('home.index.detail',['title'=>'商品详情','res'=>$res,'data'=>$data]);
+
     }
 }

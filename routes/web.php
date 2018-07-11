@@ -34,10 +34,10 @@ Route::group([],function(){
 	Route::any('admin/ajaxorders','admin\UserController@ajaxorders');
 	//配送方式
 	Route::resource('admin/dis','admin\DisController');
+
 	Route::resource('/admin/cate','admin\CateController');
 	Route::resource('/admin/notice','admin\NoticeController');
 	Route::resource('/admin/goods','admin\GoodsController');
-
 	Route::get('/admin/promotion/create/{id}','admin\PromotionsController@create');
 	Route::post('admin/promotion/store/{id}','admin\PromotionsController@store');
 	Route::any('/admin/promotion/index','admin\PromotionsController@index');
@@ -46,15 +46,10 @@ Route::group([],function(){
 	Route::any('/admin/promotion/delete/{id}','admin\PromotionsController@delete');
 
 
-
-	Route::any('admin/index','admin\IndexController@index');
-	Route::any('admin/ad/index','admin\IndexController@index');
-	Route::any('admin/ad/add','admin\ad\AdController@create');
-	Route::any('admin/ad/index','admin\ad\AdController@index');
-	Route::any('admin/ad','admin\ad\AdController@store');
-	Route::any('admin/ad/edit/{id}','admin\ad\AdController@edit');
-	Route::any('admin/ad/update/{id}','admin\ad\AdController@update');
-	Route::any('admin/ad/delete/{id}','admin\ad\AdController@destroy');
+	Route::resource('admin/comment','admin\CommentController');
+	Route::resource('admin/ad','admin\AdController');
+	Route::resource('admin/lunbo','admin\LunboController');
+	Route::any('admin/vip','admin\VipController@index');
 });
 //前台路由组
 Route::group([],function(){
@@ -77,7 +72,4 @@ Route::group([],function(){
 
 
 
-
-
-// 前台路由
 

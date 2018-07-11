@@ -20,20 +20,13 @@
 	                    显示
 	                    <select name="num" size="1" aria-controls="DataTables_Table_1">
 	                        <option value="10"
-                             @if($request->num == 10) selected="selected" 
-                             @endif>
-	                            10
+                            
 	                        </option>
 	                        <option value="20"
-                            @if($request->num == 20) selected="selected" 
-                            @endif>
-	                            20
+                           
 	                        </option>
 	                        <option value="50"
-                            @if($request->num == 50) selected="selected"
-                            @endif>
-	                            40
-                          
+                           
                          
 	                        </option>
 	                    
@@ -45,7 +38,7 @@
 	                <label>
 	                    广告商家:
 	                    <input type="text" name='search' 
-                        value="{{$request->search}}" 
+                       
                         aria-controls="DataTables_Table_1">
 	                </label>
 
@@ -63,28 +56,21 @@
                     <tr role="row">
                         <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 100px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
-                            广告id
+                           会员id
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 200px;" aria-label="Browser: activate to sort column ascending">
-                            广告商家
+                            会员折扣
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 247px;" aria-label="Platform(s): activate to sort column ascending">
-                            图片链接地址
+                            会员起始时间
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 170px;" aria-label="Engine version: activate to sort column ascending">
-                            广告内容
+                            会员到期时间
                         </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                           添加时间
-                        </th>
-                        <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 126px;" aria-label="CSS grade: activate to sort column ascending">
-                          结束时间
-                        </th>
+                      
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                         rowspan="1" colspan="1" style="width: 188px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
@@ -93,37 +79,29 @@
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all">
 
-					@foreach($res as $k => $v)
+					
 
-                    <tr class="@if($k % 2 == 1)  odd   @else even  @endif">
+                    <tr class="">
                         <td class="">
-                            {{$v->adid}}
+                         
                         </td>
                         <td class="">
-                            {{$v->adname}}
+                           
                         </td>
                         <td class=" ">
-                            <img src="{{$v->url}}" alt="" width='100'>
+                           
                             
                         </td>
                       
                         <td class=" ">
-                            {{$v->content}}
+                           
                         </td>
-                        <td class=" ">
-                            {{$v->adstime}}
-                            
-                        </td>
-                       
-                         <td class=" ">
-                            {{$v->adetime}}
-                            
-                        </td>
+                      
                          <td class=" ">
                            
-                            <a href="/admin/ad/{{$v->adid}}/edit" class='btn.btn-info'>修改</a>
+                            <a href="" class='btn.btn-info'>修改</a>
                            
-                             <form action="/admin/ad/{{$v->adid}}" method='post' style='display:inline'>
+                             <form action="" method='post' style='display:inline'>
                                 
                                 {{csrf_field()}}
 
@@ -135,7 +113,6 @@
                         </td>
                     </tr>
                  
-                    @endforeach
                
                 </tbody>
             </table>
@@ -203,7 +180,7 @@
             </style>
             <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
 
-				{{$res->links()}}
+				{{--$res->links()--}}
 
             </div>
         </div>
