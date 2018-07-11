@@ -11,7 +11,7 @@
         </span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="/admin/promotion/store" method="post">
+        <form class="mws-form" action="/admin/promotion/store/{{$data->id}}" method="post">
             <div class="mws-form-inline">
                 <div class="mws-form-row">
                     <label class="mws-form-label">

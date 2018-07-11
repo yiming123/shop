@@ -19,7 +19,7 @@ Route::resource('/admin/notice','admin\NoticeController');
 Route::resource('/admin/goods','admin\GoodsController');
 
 Route::get('/admin/promotion/create/{id}','admin\PromotionsController@create');
-Route::post('admin/promotion/store','admin\PromotionsController@store');
+Route::post('admin/promotion/store/{id}','admin\PromotionsController@store');
 Route::any('/admin/promotion/index','admin\PromotionsController@index');
 Route::any('/admin/promotion/edit/{id}','admin\PromotionsController@edit');
 Route::any('/admin/promotion/update/{id}','admin\PromotionsController@update');
@@ -28,3 +28,10 @@ Route::any('/admin/promotion/delete/{id}','admin\PromotionsController@delete');
 
 
 Route::any('/test','admin\PromotionsController@test');
+
+Route::get('/admin/form','admin\UserController@store');
+
+// 前台路由
+Route::any('/home','home\HomeController@index');
+
+Route::any('/home/detail/{id}','home\HomeController@detail');

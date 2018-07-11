@@ -70,7 +70,7 @@
                         </th>
 
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 266px;" aria-label="Browser: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 136px;" aria-label="Browser: activate to sort column ascending">
                             商品名
                         </th>
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
@@ -80,10 +80,14 @@
                         
 
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="height: 26px;" aria-label="CSS grade: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="height: 62px;" aria-label="CSS grade: activate to sort column ascending">
                            详情
                         </th>
-
+                        
+                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
+                        rowspan="1" colspan="1" style="height: 62px; " aria-label="CSS grade: activate to sort column ascending">
+                           图片
+                        </th>
 
 
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
@@ -92,7 +96,7 @@
                         </th>
 
                         <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
-                        rowspan="1" colspan="1" style="width: 50px;" aria-label="CSS grade: activate to sort column ascending">
+                        rowspan="1" colspan="1" style="width: 150px;" aria-label="CSS grade: activate to sort column ascending">
                            操作
                         </th>
                     </tr>
@@ -107,8 +111,11 @@
                         </td>
 
                         <td class=" " style="width: 40px">
-                            {{$v->cid}}
-                            
+                            @foreach($cates as $k1=>$v1)
+                                @if($v1->id == $v->cid)
+                                    {{$v1->cname}}
+                                @endif
+                            @endforeach
                         </td>
                         <td class="uname">
                             {{$v->gname}}
@@ -129,7 +136,15 @@
                             {!!$v->gdesc!!}
                             
                         </td>
-
+                        
+                        <td>
+                            @foreach($gpic as $kk=>$vv)
+                              @if($vv->gid == $v->id)
+                              <img src="{{$vv->gpic}}" alt="" style="width: 80px"><br><br>
+                              @endif
+                            @endforeach     
+                        </td>
+                        
                         <td class=" ">
                             @if($v['status']==0)上架 @endif
                             @if($v['status']==1)下架 @endif

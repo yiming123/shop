@@ -18,20 +18,16 @@ class PromotionsController extends Controller
     }
 
     // 增加促销商品操作
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
     	$res = $request->except('_token');
 
-    	$re = Goods::first();
+    	$re = Goods::where('id',$id)->first();
     	
     	$id = $re['id'];
-		
-		// dd($id);
-		$res['gid'] = $id;
-		// dd($res);
-    	// $data = Promotions::create($res);
-    	// dump($res);
 
+		$res['gid'] = $id;
+		
     	try {
             $data = Promotions::create($res);
 
