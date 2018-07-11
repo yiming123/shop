@@ -32,7 +32,7 @@
                         
                         <div class="sale-flash">80% Off*</div>
                         <div class="product-overlay">
-                            <a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
+                            <a href="/home/cart" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a>
                             <a href="/home/detail/{{$v->id}}" class="item-quick-view" ><i class="icon-zoom-in2"></i><span> Quick View</span></a>
                         </div>
                     </div>

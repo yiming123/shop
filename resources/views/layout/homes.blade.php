@@ -25,10 +25,13 @@
 	============================================= -->
 	<script type="text/javascript" src="/homes/js/jquery.js"></script>
 	<script type="text/javascript" src="/homes/js/plugins.js"></script>
+	<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 	<!-- Document Title
 	============================================= -->
 	<title>@yield('title')</title>
+
 
 </head>
 
@@ -50,9 +53,6 @@
 
 					<!-- Logo
 					============================================= -->
-<<<<<<< HEAD
-			
-=======
 					<div id="logo">
 						<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="/homes/images/logo.png" alt="Canvas Logo"></a>
 						<a href="index.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="/homes/images/logo@2x.png" alt="Canvas Logo"></a>
@@ -67,6 +67,7 @@
 						@php
 
 							$res = App\Http\Controllers\admin\CateController::getsubcate(0);
+							$cart = App\Http\Controllers\home\HomeController::cart();
 						@endphp
 
 							@foreach($res as $k => $v)
@@ -96,44 +97,54 @@
 							@endforeach
 							
 						</ul>
->>>>>>> origin/liuling
 
 						<!-- Top Cart
 						============================================= -->
-						<div id="top-cart">
-							<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
-							<div class="top-cart-content">
-								<div class="top-cart-title">
-									<h4>Shopping Cart</h4>
-								</div>
-								<div class="top-cart-items">
-									<div class="top-cart-item clearfix">
-										<div class="top-cart-item-image">
-											<a href="#"><img src="/homes/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
-										</div>
-										<div class="top-cart-item-desc">
-											<a href="#">Blue Round-Neck Tshirt</a>
+							<div id="top-cart">
+								<a href="/home/cart" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
+								<div class="top-cart-content">
+									<div class="top-cart-title">
+										<h4>Shopping Cart</h4>
+									</div>
+									<div class="top-cart-items">
+									@if(count($cart) > 0)
+									@foreach($cart as $k0=>$v0)
+										<div class="top-cart-item clearfix">
+											<div class="top-cart-item-image">
+												<a href="#"><img src="/homes/images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt" /></a>
+											</div>
+											<div class="top-cart-item-desc">
+												<a href="#">Blue Round-Neck Tshirt</a>
 											<span class="top-cart-item-price">$19.99</span>
-											<span class="top-cart-item-quantity">x 2</span>
+												<span class="top-cart-item-quantity">x {{$v0->num}}</span>
+											</div>
 										</div>
+									@endforeach
+									@else
+									<div class="cart-empty">
+									    <div class="message">
+									        <ul>
+									            <li class="txt">
+									                购物车空空的哦~，去看看心仪的商品吧~
+									            </li>
+									            <li class="mt10">
+									                <a href="/home/index" class="ftx-05">
+									                    去购物&gt;
+									                </a>
+									            </li>
+									            
+									        </ul>
+									    </div>
 									</div>
-									<div class="top-cart-item clearfix">
-										<div class="top-cart-item-image">
-											<a href="#"><img src="/homes/images/shop/small/6.jpg" alt="Light Blue Denim Dress" /></a>
-										</div>
-										<div class="top-cart-item-desc">
-											<a href="#">Light Blue Denim Dress</a>
-											<span class="top-cart-item-price">$24.99</span>
-											<span class="top-cart-item-quantity">x 3</span>
-										</div>
+									@endif
+									</div>
+									<div class="top-cart-action clearfix">
+										<span class="fleft top-checkout-price">$114.95</span>
+										<a href="/home/cart"><button class="button button-3d button-small nomargin fright" id="cart">去购物车</button></a>
 									</div>
 								</div>
-								<div class="top-cart-action clearfix">
-									<span class="fleft top-checkout-price">$114.95</span>
-									<button class="button button-3d button-small nomargin fright">View Cart</button>
-								</div>
-							</div>
-						</div><!-- #top-cart end -->
+							</div>		
+						<!-- #top-cart end -->
 
 						<!-- Top Search
 						============================================= -->
@@ -327,14 +338,17 @@
 	============================================= -->
 	<script type="text/javascript" src="/homes/js/functions.js"></script>
 
-<<<<<<< HEAD
+
 
 	@section('js')
 
 
 	@show
 
-=======
->>>>>>> origin/liuling
+
+
 </body>
+<!-- 购物车跳转
+	============================================= -->
+
 </html>

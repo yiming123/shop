@@ -9,7 +9,7 @@ use DB;
 class CartController extends Controller
 {
     //
-      public function cart()
+    public function cart()
     {
     	// $cart = DB::table
     	// $res = DB::table('goods')->get();
@@ -18,7 +18,6 @@ class CartController extends Controller
             ->Join('cart', 'goods.id', '=', 'cart.gid')
             ->get();
          // dd($res);
-
     	return view('home.cart.cart',['res'=>$res]);
     }
 

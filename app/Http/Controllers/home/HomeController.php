@@ -8,6 +8,7 @@ use App\Models\Admin\Goods;
 use App\Models\Admin\Goodspic;
 use App\Models\Admin\Promotions;
 use App\Models\Admin\Notice;
+use DB;
 
 class HomeController extends Controller
 {
@@ -22,8 +23,7 @@ class HomeController extends Controller
     	$pro = Promotions::all();
     	// dd($pro);
 
-        $notice = Notice::all();
-    	
+        $notice = Notice::all();   	
     	return view ('home.index.index',['title'=>'前台首页','res'=>$res,'data'=>$data,'pro'=>$pro,'notice'=>$notice]);
     }
 
@@ -35,5 +35,13 @@ class HomeController extends Controller
 
     	return view('home.index.detail',['title'=>'商品详情','res'=>$res,'data'=>$data]);
 
+    }
+    public static function cart()
+    {
+        $cart = DB::table('cart')
+        ->Join('goods', 'cart.gid', '=', 'goods.id')
+        ->get();
+        // dd($cart);
+        return $cart;  
     }
 }
