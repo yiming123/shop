@@ -23,11 +23,34 @@
 
 	<!-- External JavaScripts
 	============================================= -->
+	<link href="/other/admin.css" rel="stylesheet" type="text/css">
+    <link href="/other/amazeui.css" rel="stylesheet" type="text/css">
+
+    <link href="/other/personal.css" rel="stylesheet" type="text/css">
+    <link href="/other/addstyle.css" rel="stylesheet" type="text/css">
+    <script src="/other/amazeui.js"></script>
 	<script type="text/javascript" src="/homes/js/jquery.js"></script>
 	<script type="text/javascript" src="/homes/js/plugins.js"></script>
 	<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
-<!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+			.m-progress {margin: 0 auto 10px;height: 60px;max-width: 700px;margin-top:40px ;}
+			.m-progress-list{height: 66px;font-size: 0;text-align: justify;}
+			.m-progress-list .step {display: inline-block;width:60px;text-align: center;color: #999;letter-spacing: -5px;}
+			.m-progress-list .stage-name {padding-top: 10px;font-size: 12px;line-height: 14px;
+			letter-spacing: normal;word-spacing: normal;}
+			.u-progress-stage-bg {position: relative;display: inline-block;background-image: url(../images/sprite.png);
+			background-position: -45px -135px;width: 29px;height: 29px;}
+			.u-stage-icon-inner .bg {position: absolute;left: 0px;top: 0px;}
+			
 
+			.u-stage-icon-inner {position: relative;z-index: 20;display: inline-block;width: 19px;height: 19px;line-height: 19px;
+			vertical-align: top;margin-top: 5px;margin-left: -24px;color: #b5b5b5;font-size: 12px;letter-spacing: normal;word-spacing: normal;}
+			.u-progress-placeholder {display: inline-block;width: 100%;height: 0;font-size: 0;line-height: 0;overflow: hidden;}
+
+			.u-progress-bar {margin: -56px 40px 0;background-color: #dcdcdc;height: 5px;font-size: 0;padding: 2px 0;}
+			.u-progress-bar-inner {position: relative;z-index: 10;height: 5px;width: 0;transition: width 1s .5s linear;background-color: #23c279;}
+	</style>
 	<!-- Document Title
 	============================================= -->
 	<title>@yield('title')</title>
@@ -259,10 +282,10 @@
 		@show
 
 		</section><!-- #content end -->
-
+		@section('footer')
 		<!-- Footer
 		============================================= -->
-		<footer id="footer" class="dark">
+		<footer id="footer" class="dark" >
 			<!-- Copyrights
 			============================================= -->
 			<div id="copyrights">
@@ -333,7 +356,7 @@
 	<!-- Go To Top
 	============================================= -->
 	<div id="gotoTop" class="icon-angle-up"></div>
-
+	@show
 	<!-- Footer Scripts
 	============================================= -->
 	<script type="text/javascript" src="/homes/js/functions.js"></script>

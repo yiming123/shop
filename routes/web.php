@@ -56,6 +56,11 @@ Route::group([],function(){
 	//购物车
 	Route::any('/home/cart','home\CartController@cart');
 	Route::any('/home/ajaxcart','home\CartController@ajaxcart');
+	Route::any('/home/order','home\CartController@orders');
+
+	//结算页面
+	Route::any('/home/receipt','home\SettlementController@receipt');
+	Route::any('/home/suc','home\SettlementController@suc');
 
 
 	Route::any('/home','home\HomeController@index');

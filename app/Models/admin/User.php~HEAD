@@ -4,17 +4,17 @@ namespace App\Models\admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dis extends Model
+class User extends Model
 {
-      //
+    //
     /**
      * 与模型关联的数据表
      *
      * @var string
      */
-    protected $table = 'dis';
+    protected $table = 'user';
 
-    protected $primaryKey = 'did';
+    protected $primaryKey = 'uid';
 
     public $timestamps = false;
 
@@ -24,5 +24,7 @@ class Dis extends Model
      *
      * @var array
      */
-    protected $fillable = ['uid','oid','wid'];
+
+    protected $fillable = ['uname','pwd','auth','sex','tell','addr','create_at','image'];
+
 }

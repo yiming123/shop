@@ -13,19 +13,7 @@
 
     	<form action="/admin/dis" method='post' class="mws-form" enctype='multipart/form-data'>
     		<div class="mws-form-inline">
-    			<div class="mws-form-row">
-    				<label class="mws-form-label">用户名</label>
-    				<div class="mws-form-item">
-    					<input type="text" class="small" name='uid'>
-    				</div>
-    			</div>
-
-    			<div class="mws-form-row">
-    				<label class="mws-form-label">订单号</label>
-    				<div class="mws-form-item">
-    					<input type="text" class="small" name='oid'>
-    				</div>
-    			</div>
+    			
                 <div class="mws-form-row">
                     <label class="mws-form-label">快递公司</label>
                     <div class="mws-form-item">

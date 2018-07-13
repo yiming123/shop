@@ -31,13 +31,17 @@
                 <div class="mws-form-row">
                     <label class="mws-form-label">快递公司</label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" name='way' value="{{$res->way}}">
+                        <select class="samll" name="way" style="width:365px;">
+                        @foreach($way as $k=>$v)
+                          <option <?php if ($v->id == $res->wid): ?>selected<?php endif ?>   >{{$v->way}}</option>
+                        @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="mws-form-row">
                     <label class="mws-form-label">运费</label>
                     <div class="mws-form-item">
-                        <input type="text" class="small" name='price' value="{{$res->price}}">
+                        <input type="text" class="small" name='price' value="{{$arr->price}}" readonly="">
                     </div>
                 </div>
             </div>

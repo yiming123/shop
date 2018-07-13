@@ -14,36 +14,48 @@ class CartController extends Controller
     	// $cart = DB::table
     	// $res = DB::table('goods')->get();
     	 $res = DB::table('goods')
-            ->Join('goodspic', 'goods.id', '=', 'goodspic.gid')
             ->Join('cart', 'goods.id', '=', 'cart.gid')
             ->get();
-         // dd($res);
-    	return view('home.cart.cart',['res'=>$res]);
+        // dd($res);
+        $arr = DB::table('goodspic')->get();
+        // dd($arr);
+    	return view('home.cart.cart',['res'=>$res,'arr'=>$arr]);
     }
 
     public function ajaxcart(Request $request)
     {
+        // dd($request);
+
     	$id = $request->input('id');
     	//构造器删除
-    	$data = DB::table('cart')->where('cid',$id)->delete();
+    	$data = DB::table('cart')->where('id',$id)->delete();
 
     	$count = DB::table('cart')->count();
 
-    	echo $count;
+    	echo $id;
 
     	//模型删除
     	// Cart::where('id',$id)->delete();
 
     	//Cart::destroy($id);
-/*
-    	if($data){
 
-    		echo 1;
-    	} else {
+    	// if($data){
 
-    		echo 0;
-    	}
+    	// 	echo 1;
+    	// } else {
 
-*/
+    	// 	echo 0;
+    	// }
+
+    }
+
+    public function orders(Request $request)
+    {
+        $id = $request->input('id');
+        $arr[] = $id;
+        session(['id'=>$arr]); 
+        echo session('id');
+        // echo $id;
+        
     }
 }

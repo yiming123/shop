@@ -44,6 +44,7 @@
 
 
 @section('page')
+
 <section id="page-title">
 
 	<div class="container clearfix">
@@ -63,8 +64,7 @@
 
 	<div class="container clearfix lamp203">
 
-		<div class="table-responsive bottommargin">
-			
+		<div class="table-responsive bottommargin">	
 			@if(count($res) > 0)
 			<table class="table cart">
 				<thead>
@@ -74,7 +74,7 @@
 						<th class="cart-product-name">商品名</th>
 						<th class="cart-product-price">价格</th>
 						<!-- <th class="cart-product-price">颜色</th>
-						<th class="cart-product-price">尺码</th -->>
+						<th class="cart-product-price">尺码</th -->
 						<th class="cart-product-quantity">数量</th>
 						<th class="cart-product-subtotal">小计</th>
 						<th class="cart-product-subtotal">操作</th>
@@ -86,11 +86,16 @@
 					@foreach($res as $k => $v)
 					<tr class="cart_item">
 						<td class="cart-product-thumbnail">
-							<input type="checkbox">
+							<input type="checkbox" idss="{{$v->id}}">
 						</td>
 
 						<td class="cart-product-thumbnail">
-							
+							@foreach($arr as $k1=>$v1)
+								@if($v1->gid == $v->gid)
+									<?php $pic = $v1->gpic;	?>
+								@endif
+							@endforeach
+							<img src="{{$pic}}" alt="">
 						</td>
 
 						<td class="cart-product-name">
@@ -106,7 +111,7 @@
 						<td class="cart-product-quantity">
 							<div class="quantity clearfix">
 								<input type="button" value="-" class="minus">
-								<input type="text" name="quantity" value="1" class="qty" />
+								<input type="text" name="quantity" value="{{$v->num}}" class="qty" />
 								<input type="button" value="+" class="plus">
 							</div>
 						</td>
@@ -128,7 +133,7 @@
 								
 								<div class="col-md-12 col-xs-12 nopadding">
 									
-									<a href="shop.html" class="button button-3d notopmargin fright">结算</a>
+									<a href="/home/receipt" class="button button-3d notopmargin fright">结算</a>
 								</div>
 							</div>
 						</td>
@@ -230,6 +235,7 @@
 		var num = $(this).prev().val();
 
 		num++;
+		
 		//加完之后让数量发生改变
 		$(this).prev().val(num);
 
@@ -294,10 +300,14 @@
 
 	})
 
-	//单击多选框让总价发生改变
+	//单击多选框
 	$(':checkbox').click(function(){
 
 		totals();
+		var id = $(this).attr('ids');
+		$.post('/home/order',{'id':id},function(data){
+			console.log(data);
+		})
 
 	})
 
@@ -351,8 +361,8 @@
 
 
 		//发送ajax
-		$.post('/home/ajaxcart',{id:id},function(data){
-
+		$.post('/home/ajaxcart',{'id':id},function(data){
+			console.log(data);
 			if(data != '0'){
 
 				ts.parents('tr').remove();
@@ -379,15 +389,9 @@
 				    </div>
 				</div>`);
 			}
-
 		})
-
-
 	})
-
-
-
-
+</script>
 </script>
 
 

@@ -88,12 +88,16 @@
                         <td class=" ">
                             {{$v->oid}}
                         </td>
+                        @foreach($dis as $k1=>$v1)
+                        @if($v1->id == $v->wid)
                         <td class=" ">
-                            {{$v->way}}
+                            {{$v1->way}}
                         </td>
                         <td class=" ">
-                            {{$v->price}}
+                            {{$v1->price}}
                         </td>
+                        @endif
+                        @endforeach
                           <td class=" ">
                             <a href="/admin/dis/{{$v->did}}/edit" class='btn btn-info'>修改</a>
                             <form action="/admin/dis/{{$v->did}}" method="post"  style='display:inline'>
